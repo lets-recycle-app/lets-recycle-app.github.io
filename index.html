@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <title>Bootstrap Template</title>
+    <title>Lets Recycle App</title>
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap/style.min.css" rel="stylesheet">
@@ -48,12 +48,79 @@
       </div>
       <!-- Main column -->
       <div class="col-sm-12 col-md-8 col-lg-8 col-xl-7">
-        <h1 class="mt-5">Sticky footer with fixed navbar</h1>
-        <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and CSS. A fixed navbar has been added with <code>padding-top: 60px;</code> on the <code>main &gt; .container</code>.</p>
-        <div class="row">
-          <div class="col-sm">Lorem</div>
-          <div class="col-sm">Ipsum</div>
-        </div>
+        <h1 class="mt-1">Report old house appliance</h1>
+        <p class="lead">We recycle old house appliances. Let us know if you have one at home or spotted one dumped in public area.</p>
+        <a href="">Learn more...</a>
+        <p class="mt-2"><strong>Fill in the form to report location of the scrap appliance.</strong></p>
+        <form>
+          <div class="form-group row">
+            <label for="inputAppliance" class="col-md-3 col-form-label">Appliance</label>
+            <div class="col-md-9">
+              <input type="text"  class="form-control" id="inputNumber">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputNumber" class="col-md-3 col-form-label">House No</label>
+            <div class="col-md-9">
+              <input type="text"  class="form-control" id="inputNumber">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputStreet" class="col-md-3 col-form-label">Street</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="inputStreet">
+            </div>
+          </div> 
+          <div class="form-group row">
+            <label for="inputTown" class="col-md-3 col-form-label">Town/City</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="inputTown">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputPostcode" class="col-md-3 col-form-label">Postcode</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="inputPostcode">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputNotes" class="col-md-3 col-form-label">Notes</label>
+            <div class="col-md-9">
+              <textarea class="form-control" id="inputNotes"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="inputNotes" class="col-md-4 col-form-label">Type of collection</label>
+            <div class="col-md-8">
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                <label class="form-check-label" for="inlineRadio1">Public Area</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                <label class="form-check-label" for="inlineRadio2">Private Property</label>
+              </div>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="inputName" class="col-md-3 col-form-label">Full Name</label>
+            <div class="col-md-9">
+              <input type="text" class="form-control" id="inputName">
+            </div>
+          </div>                  
+          <div class="form-group row">
+            <label for="email" class="col-md-3 col-form-label">Email</label>
+            <div class="col-md-9">
+              <input type="text"  class="form-control" id="email">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-md-12 text-right">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </div>      
+        </form>
       </div>
       <!-- Side column -->
       <div class="col-sm-12 col-md-4 col-lg-4 col-xl-3">
