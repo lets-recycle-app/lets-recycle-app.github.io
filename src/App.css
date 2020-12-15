@@ -4,11 +4,9 @@
   flex-wrap: wrap;
   flex-direction: row;
 }
-.main-column {
+.main-column, .side-column {
   flex-basis : 0;
-}
-.side-column {
-  flex-basis : 0;
+  padding: 15px;
 }
 .map {
   background-color: #f8fff0;
@@ -16,10 +14,8 @@
   min-height: 600px;
 }
 /* Media queries */
-@media (max-width: 416px){
 
-}
-@media (min-width: 417px) and (max-width: 600px){
+@media (max-width: 600px){
   .container {
     flex-direction: column;
     max-width:400px;
