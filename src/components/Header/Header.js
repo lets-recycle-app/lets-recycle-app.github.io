@@ -17,12 +17,8 @@ function Header() {
               <li className="nav-item">
                 <NavLink to="/about" activeClassName="active">About</NavLink>
               </li>
-              <li className="nav-item">
-                <NavLink to="/map" activeClassName="active">Map</NavLink>
-              </li>
             </ul>
           </div>
-    
         </nav>
       </header>
     );
