@@ -37,6 +37,7 @@ function App() {
         </Route>
 {/* admin  */}
         <Route exact path="/admin">
+          <AdminHeader />
           <p>Admin login goes here.</p>
         </Route>
         <Route path="/admin/drivers-list">
