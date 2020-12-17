@@ -8,10 +8,10 @@ function DriversListItem(props) {
             <span className="triangle">&#9660;</span>
           </div>
           <div className="box-body">
-            Item: washing machine
-            <br/>Location Type: Public area
-            <br/>Notes: In the back alley
-            <br/>Status: Completed
+            Item: {props.item}
+            <br/>Location Type: {props.locationType}
+            <br/>Notes: {props.notes}
+            <br/>Status: {props.completed ? 'completed' : 'not completed'}
           </div>
         </div>
     );
