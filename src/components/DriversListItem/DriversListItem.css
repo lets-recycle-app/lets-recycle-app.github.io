@@ -1,0 +1,28 @@
+.drivers-list-item {
+    margin: 0 0 15px 0;
+}
+.drivers-list-item div {
+    padding: 10px;
+}
+.drivers-list-item .box-head {
+    border: 1px solid #666666;
+}
+.drivers-list-item .box-body {
+    background-color: #cccccc;
+}
+.drivers-list-item .tick-box-icon {
+    font-size: 26px;
+    line-height: 26px;
+    margin-right: 5px;
+}
+.drivers-list-item .green {
+    background-color: #68ca5b;
+}
+.drivers-list-item .blue {
+    background-color: #58e2ec;
+}
+.drivers-list-item .triangle {
+    font-size: 20px;
+    color: #ffffff;
+    float: right;
+}
