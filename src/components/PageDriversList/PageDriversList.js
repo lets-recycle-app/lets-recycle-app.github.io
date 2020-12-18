@@ -16,6 +16,7 @@ function PageDriversList() {
           <h1>Your todays route is listed below.</h1>
           { todaysDriversItems.map(item => 
             <DriversListItem 
+            key={item.id}
             houseNo={item.houseNo} 
             street={item.street} 
             town={item.town} 
@@ -25,7 +26,7 @@ function PageDriversList() {
             item={item.item}
             locationType={item.locationType}
             notes={item.notes}
-            />          
+            />   
           )}
         </div>
     );

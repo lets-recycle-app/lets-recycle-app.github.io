@@ -1,9 +1,6 @@
 import './Header.css';
-import {
-  BrowserRouter as Router,
-  Link,
-  NavLink
-} from "react-router-dom";
+import {Link, NavLink} from "react-router-dom";
+
 function Header() {
     return (
         <header>
