@@ -1,72 +1,77 @@
+import "./FormReport.css";
 function FormReport() {
     return (
       <form>
-        <div className="form-group row">
-          <label htmlFor="inputAppliance" className="col-md-3 col-form-label">Appliance</label>
-          <div className="col-md-9">
-            <input type="text"  className="form-control" id="inputAppliance" />
-          </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="inputNumber" className="col-md-3 col-form-label">House No</label>
-          <div className="col-md-9">
-            <input type="text"  className="form-control" id="inputNumber" />
-          </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="inputStreet" className="col-md-3 col-form-label">Street</label>
-          <div className="col-md-9">
-            <input type="text" className="form-control" id="inputStreet" />
-          </div>
-        </div> 
-        <div className="form-group row">
-          <label htmlFor="inputTown" className="col-md-3 col-form-label">Town/City</label>
-          <div className="col-md-9">
-            <input type="text" className="form-control" id="inputTown" />
-          </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="inputPostcode" className="col-md-3 col-form-label">Postcode</label>
-          <div className="col-md-9">
-            <input type="text" className="form-control" id="inputPostcode" />
-          </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="inputNotes" className="col-md-3 col-form-label">Notes</label>
-          <div className="col-md-9">
-            <textarea className="form-control" id="inputNotes"></textarea>
+        <div className="form-row">
+          <label>Type of location</label>
+          <div>
+            <div className="form-check-inline">
+              <input type="radio" name="locationType" id="inlineRadio1" value="public area" />
+              <label htmlFor="inlineRadio1">Public Area</label>
+            </div>
+            <div className="form-check-inline">
+              <input type="radio" name="locationType" id="inlineRadio2" value="private property" />
+              <label htmlFor="inlineRadio2">Private Property</label>
+            </div>
           </div>
         </div>
 
-        <div className="form-group row">
-          <label htmlFor="inputNotes" className="col-md-4 col-form-label">Type of collection</label>
-          <div className="col-md-8">
-            <div className="form-check form-check-inline">
-              <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" />
-              <label className="form-check-label" htmlFor="inlineRadio1">Public Area</label>
-            </div>
-            <div className="form-check form-check-inline">
-              <input className="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2" />
-              <label className="form-check-label" htmlFor="inlineRadio2">Private Property</label>
-            </div>
-          </div>
-        </div>
-        <div className="form-group row">
-          <label htmlFor="inputName" className="col-md-3 col-form-label">Full Name</label>
-          <div className="col-md-9">
-            <input type="text" className="form-control" id="inputName" />
+        <div className="form-row">
+          <label htmlFor="inputName">Full Name</label>
+          <div>
+            <input type="text" id="inputName" />
           </div>
         </div>                  
-        <div className="form-group row">
-          <label htmlFor="email" className="col-md-3 col-form-label">Email</label>
-          <div className="col-md-9">
-            <input type="text"  className="form-control" id="email" />
+        <div className="form-row">
+          <label htmlFor="email">Email</label>
+          <div>
+            <input type="text"  id="email" />
           </div>
         </div>
-        <div className="form-group row">
-          <div className="col-md-12 text-right">
-            <button type="submit" className="btn btn-primary">Submit</button>
+        <div className="form-row">
+          <label htmlFor="inputAppliance">Appliance Type</label>
+          <div>
+            <select id="inputAppliance" name="appliance">
+              <option value="">Select...</option>
+              <option value="washing machine">Washing Machine</option>
+            </select>
           </div>
+        </div>
+        <div className="form-row">
+          <label htmlFor="inputNumber">House No</label>
+          <div>
+            <input type="text"  id="inputNumber" />
+          </div>
+        </div>
+        <div className="form-row">
+          <label htmlFor="inputStreet">Street</label>
+          <div>
+            <input type="text" id="inputStreet" />
+          </div>
+        </div> 
+        <div className="form-row">
+          <label htmlFor="inputTown">Town/City</label>
+          <div>
+            <input type="text" id="inputTown" />
+          </div>
+        </div>
+        <div className="form-row">
+          <label htmlFor="inputPostcode" >Postcode</label>
+          <div>
+            <input type="text" id="inputPostcode" />
+          </div>
+        </div>
+        <div className="form-row">
+          <label htmlFor="inputNotes">Notes
+          <br/><small>Please describe location in detail. What is parking situation and access to the appliance?</small>
+          </label>
+          <div className="textarea-wrapper">
+            <textarea id="inputNotes"></textarea>
+          </div>
+        </div>
+        <div className="form-row text-right">
+            <button type="submit" className="btn btn-primary">Submit</button>
+
         </div>      
       </form>
     );
