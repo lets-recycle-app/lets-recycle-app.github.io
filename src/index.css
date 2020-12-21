@@ -20,7 +20,7 @@ a:hover{
   color: #666666;
 }
 
-input[type=text], select, textarea {
+input[type=text], input[type=email], select, textarea {
   box-sizing: border-box;
   display: block;
   padding: 5px 8px;
@@ -40,12 +40,12 @@ button {
   border: 1px solid #12c35a;
   padding: .375rem .75rem;
   transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  cursor: pointer;
 }
 button:hover {
   background: #0fa04a linear-gradient(180deg,#33ae65,#0fa04a) repeat-x;
   border: 1px solid #0e9444;
 }
-
 
 
 /* Global utility classes */

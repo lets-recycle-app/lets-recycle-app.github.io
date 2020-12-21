@@ -21,6 +21,7 @@
 }
 .textarea-wrapper textarea{
     height: 100px;
+    resize: vertical;
 }
 
 /* Media queries */
