@@ -23,6 +23,17 @@
     height: 100px;
     resize: vertical;
 }
+.form-row .borderRed {
+    border: 1px solid red;
+}
+.form-row .textRed {
+    color: red;
+}
+.errorMsg span {
+    display: block;
+    color: red;
+}
+
 
 /* Media queries */
 @media (max-width: 700px){
