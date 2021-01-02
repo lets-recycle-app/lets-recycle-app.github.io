@@ -33,6 +33,10 @@
     display: block;
     color: red;
 }
+.successMsg span {
+    display: block;
+    color: #20cf46;
+}
 
 
 /* Media queries */
