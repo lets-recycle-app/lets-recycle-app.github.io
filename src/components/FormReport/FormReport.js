@@ -21,6 +21,12 @@ function FormReport() {
     setInputEmail({ value: "" });
   }
 
+  const lookupPostcode = async (code) => {
+    const postcodes = require('node-postcodes.io');
+    const result = await postcodes.lookup(code);
+    return result;
+  }
+
   const validateForm = e => {
     let errorMsg = [];
     //console.log(locationType, inputName, inputEmail, inputAppliance, inputHouseNo,inputStreet, inputTown, inputPostcode, inputNotes);
@@ -58,7 +64,19 @@ function FormReport() {
     if (inputPostcode.value === "") {
       errorMsg.push("Please enter postcode.");
       setInputPostcode({ value: "", css: "borderRed" });
-    }
+    } 
+/*     else {
+      //function above returns a promise, I deal with it here
+      lookupPostcode(inputPostcode.value)
+      .then(result => {
+          //console.log('result= ', result);
+        if(result.status !== 200){
+          errorMsg.push("Please enter a correct UK postcode.");
+          setInputPostcode({ value: inputPostcode.value, css: "borderRed" });
+          return errorMsg;
+        }
+      });
+    } */
     //console.log(errorMsg);
     return errorMsg;
   }
@@ -76,6 +94,19 @@ function FormReport() {
 
       setMessageOnSubmit({msg: ["Your request was sent. " + strCollection], css: "successMsg"});
       //console.log('success');
+      //function above returns a promise, I deal with it here
+/*       lookupPostcode(inputPostcode.value)
+      .then(result => {
+       // console.log('result= ', result);
+        if(result.status === 200){
+          setInputPostcode({ 
+            value: inputPostcode.value, 
+            css: "", 
+            long: result.result.longitude,
+            lat: result.result.latitude
+          });
+        } 
+      });*/
 
       let now = new Date().toISOString().substring(0, 19).replace("T", " ");
       const collectionRequest = {
@@ -91,9 +122,11 @@ function FormReport() {
         postcode: inputPostcode.value,
         item: inputAppliance.value,
         notes: inputNotes.value,
-        type: "collection"
+        type: "collection",
+/*         longitude: inputPostcode.long,
+        latitude: inputPostcode.lat */
       };
-      //console.log(collectionRequest);
+     console.log(collectionRequest);
       let colReq = [];
       //get storage and turn into array
       if (localStorage.getItem('colRequest')) {
