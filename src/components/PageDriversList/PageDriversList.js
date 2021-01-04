@@ -27,6 +27,7 @@ function PageDriversList() {
           { dirversItems.map(item => 
             <DriversListItem 
             key={item.id}
+            id={item.id}
             houseNo={item.houseNo} 
             street={item.street} 
             town={item.town} 

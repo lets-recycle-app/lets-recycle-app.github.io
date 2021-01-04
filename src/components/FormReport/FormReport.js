@@ -72,7 +72,7 @@ function FormReport() {
     } else {
       let collectionId = uuidv4();
 
-      let strCollection = (locationType === "private property" ? "Your collection ID is: " + collectionId + ". Please keep it to manage your collection." : "");
+      let strCollection = (locationType.value === "private property" ? "Your collection ID is: " + collectionId + ". Please keep it to manage your collection." : "");
 
       setMessageOnSubmit({msg: ["Your request was sent. " + strCollection], css: "successMsg"});
       //console.log('success');

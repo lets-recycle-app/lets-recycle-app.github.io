@@ -8,7 +8,8 @@ function DriversListItem(props) {
             <span className="triangle">&#9660;</span>
           </div>
           <div className="box-body">
-            Item: {props.item}
+            Reference no: {props.id}
+            <br/>Item: {props.item}
             <br/>Location Type: {props.locationType}
             <br/>Notes: {props.notes}
             <br/>Status: {props.completed ? 'completed' : 'not completed'}
