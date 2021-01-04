@@ -8,10 +8,8 @@
   flex-basis : 0;
   padding: 15px;
 }
-.map {
-  background-color: #ceff97;
-  width: 100%;
-  min-height: 600px;
+.admin .side-column {
+  padding: 0;
 }
 
 /* Media queries */

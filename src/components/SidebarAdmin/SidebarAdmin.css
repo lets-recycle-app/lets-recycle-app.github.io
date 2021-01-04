@@ -1,0 +1,22 @@
+.admin-menu {
+    list-style:none;
+    padding:0;
+    margin:0;
+    background-color: #333333;
+    color: #eeddee;
+    min-height: 400px;
+    height: 100%;
+}
+.admin-menu-item {
+    display: block;
+}
+.admin-menu-item a {
+    padding: 15px;
+    display: block;
+    text-decoration: none;
+    color: #cccccc;
+}
+.admin-menu-item a.active {
+    background-color: #666666;
+    color: #ffffff;
+}
