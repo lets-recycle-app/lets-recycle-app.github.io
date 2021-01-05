@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-function HeaderAdmin() {
+function AdminHeader() {
 return (
         <header>
             <nav className="navbar">
@@ -11,4 +11,4 @@ return (
           </header>
 );
 }
-export default HeaderAdmin;
+export default AdminHeader;

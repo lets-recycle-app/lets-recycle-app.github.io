@@ -7,10 +7,11 @@ import {
 import Header from './components/Header/Header.js';
 import Footer from './components/Footer/Footer.js';
 import Sidebar from './components/Sidebar/Sidebar.js';
-import SidebarAdmin from './components/SidebarAdmin/SidebarAdmin.js';
+import AdminSidebar from './components/AdminSidebar/AdminSidebar.js';
 import PageContentLanding from './components/PageContentLanding/PageContentLanding.js';
 import PageDriversList from './components/PageDriversList/PageDriversList.js';
-import HeaderAdmin from './components/HeaderAdmin/HeaderAdmin.js';
+import AdminHeader from './components/AdminHeader/AdminHeader.js';
+import AdminDepotMap from "./components/AdminDepotMap/AdminDepotMap";
 
 function App() {
   return (
@@ -37,9 +38,9 @@ function App() {
           </Route>
           {/* admin  */}
           <Route exact path="/admin">
-            <HeaderAdmin />
+            <AdminHeader />
             <div className="container admin">
-              <SidebarAdmin />
+              <AdminSidebar />
               <div className="main-column">
                 <p>Sample Admin page</p>
               </div>
@@ -47,9 +48,9 @@ function App() {
             <Footer />
           </Route>
           <Route path="/admin/drivers-list">
-            <HeaderAdmin />
+            <AdminHeader />
             <div className="container admin">
-              <SidebarAdmin />
+              <AdminSidebar />
               <div className="main-column">
                 < PageDriversList />
               </div>
@@ -57,11 +58,11 @@ function App() {
             <Footer />
           </Route>
           <Route path="/admin/map">
-            <HeaderAdmin />
+            <AdminHeader />
             <div className="container admin">
-              <SidebarAdmin />
+              <AdminSidebar />
               <div className="main-column">
-                <p>Map goes here</p>
+                < AdminDepotMap />
               </div>
             </div>
             <Footer />
