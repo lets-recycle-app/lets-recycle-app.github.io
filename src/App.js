@@ -38,7 +38,7 @@ function App() {
           {/* admin  */}
           <Route exact path="/admin">
             <HeaderAdmin />
-            <div className="container admin">
+            <div className="admin-container">
               <SidebarAdmin />
               <div className="main-column">
                 <p>Sample Admin page</p>
@@ -48,7 +48,7 @@ function App() {
           </Route>
           <Route path="/admin/drivers-list">
             <HeaderAdmin />
-            <div className="container admin">
+            <div className="admin-container">
               <SidebarAdmin />
               <div className="main-column">
                 < PageDriversList />
@@ -58,7 +58,7 @@ function App() {
           </Route>
           <Route path="/admin/map">
             <HeaderAdmin />
-            <div className="container admin">
+            <div className="admin-container">
               <SidebarAdmin />
               <div className="main-column">
                 <p>Map goes here</p>
