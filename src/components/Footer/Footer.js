@@ -3,7 +3,7 @@ function Footer() {
     return (
       <footer>
       <div className="container">
-        <div>Place footer content here.</div>
+        Copyright &copy;  {(new Date().getFullYear())} Let's Recycle All Rights Reserved
       </div>
     </footer>
     );

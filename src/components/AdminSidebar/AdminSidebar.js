@@ -1,7 +1,7 @@
 import {NavLink} from "react-router-dom";
-import "./SidebarAdmin.css";
+import "./AdminSidebar.css";
 
-function SidebarAdmin() {
+function AdminSidebar() {
     return (
     <div className="side-column">
     <ul className="admin-menu">
@@ -9,7 +9,7 @@ function SidebarAdmin() {
             <NavLink exact to="/admin">Dashboard</NavLink>
         </li>
         <li className="admin-menu-item">
-            <NavLink to="/admin/map">Map</NavLink>
+            <NavLink to="/admin/map">Depot Map</NavLink>
         </li>
         <li className="admin-menu-item">
             <NavLink to="/admin/drivers-list">Driver's list</NavLink>
@@ -19,4 +19,4 @@ function SidebarAdmin() {
     );
 }
 
-export default SidebarAdmin;
+export default AdminSidebar;

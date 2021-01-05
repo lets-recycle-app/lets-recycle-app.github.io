@@ -42,5 +42,11 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "https://lets-recycle-app.github.io"
+  "homepage": "https://lets-recycle-app.github.io",
+  "devDependencies": {
+    "devextreme-react": "^20.2.4",
+    "dotenv": "^8.2.0",
+    "devextreme": "20.2.4",
+    "devexpress-diagram": "2.0.5"
+  }
 }

@@ -7,10 +7,9 @@ import {
 import Header from './components/Header/Header.js';
 import Footer from './components/Footer/Footer.js';
 import Sidebar from './components/Sidebar/Sidebar.js';
-import SidebarAdmin from './components/SidebarAdmin/SidebarAdmin.js';
 import PageContentLanding from './components/PageContentLanding/PageContentLanding.js';
 import PageDriversList from './components/PageDriversList/PageDriversList.js';
-import HeaderAdmin from './components/HeaderAdmin/HeaderAdmin.js';
+import AdminDepotMap from "./components/AdminDepotMap/AdminDepotMap";
 
 function App() {
   return (
@@ -61,7 +60,7 @@ function App() {
             <div className="admin-container">
               <SidebarAdmin />
               <div className="main-column">
-                <p>Map goes here</p>
+                < AdminDepotMap />
               </div>
             </div>
             <Footer />
