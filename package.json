@@ -13,7 +13,6 @@
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
-    "uuid": "^8.3.2",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -22,7 +21,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "route-test": "node ./src/components/AdminUtils/routeTest.js"
   },
   "eslintConfig": {
     "extends": [
@@ -44,9 +44,11 @@
   },
   "homepage": "https://lets-recycle-app.github.io",
   "devDependencies": {
+    "devexpress-diagram": "2.0.5",
+    "devextreme": "20.2.4",
     "devextreme-react": "^20.2.4",
     "dotenv": "^8.2.0",
-    "devextreme": "20.2.4",
-    "devexpress-diagram": "2.0.5"
+    "idb": "^5.0.8",
+    "react-uuid": "^1.0.2"
   }
 }

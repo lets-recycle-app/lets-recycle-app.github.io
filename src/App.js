@@ -12,6 +12,7 @@ import AdminSidebar from './components/AdminSidebar/AdminSidebar.js';
 import PageContentLanding from './components/PageContentLanding/PageContentLanding.js';
 import PageDriversList from './components/PageDriversList/PageDriversList.js';
 import AdminDepotMap from "./components/AdminDepotMap/AdminDepotMap";
+import AdminData from "./components/AdminData/AdminData";
 
 function App() {
   return (
@@ -42,7 +43,7 @@ function App() {
             <div className="admin-container">
               <AdminSidebar />
               <div className="main-column">
-                <p>Sample Admin page</p>
+                <AdminData />
               </div>
             </div>
             <Footer />
