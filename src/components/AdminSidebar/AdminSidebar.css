@@ -6,6 +6,7 @@
     color: #eeddee;
     min-height: 400px;
     height: 100%;
+    alignment: left;
 }
 .admin-menu-item {
     display: block;
