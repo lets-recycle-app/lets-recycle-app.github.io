@@ -10,6 +10,7 @@ import Sidebar from './components/Sidebar/Sidebar.js';
 import AdminHeader from './components/AdminHeader/AdminHeader.js';
 import AdminSidebar from './components/AdminSidebar/AdminSidebar.js';
 import PageContentLanding from './components/PageContentLanding/PageContentLanding.js';
+import PageAbout from './components/PageAbout/PageAbout.js';
 import PageDriversList from './components/PageDriversList/PageDriversList.js';
 import AdminDepotMap from "./components/AdminDepotMap/AdminDepotMap";
 
@@ -30,7 +31,7 @@ function App() {
             <Header />
             <div className="container">
               <div className="main-column">
-                <p>Lorem ispum dolor.</p>
+                <PageAbout />
               </div>
               <Sidebar />
             </div>

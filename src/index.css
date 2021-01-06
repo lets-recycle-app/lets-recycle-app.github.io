@@ -13,11 +13,11 @@ code {
 }
 
 a, a:active, a:visited {
-  color: #333333;
+  color: #666666;
   text-decoration: none;
 }
 a:hover{
-  color: #666666;
+  color: #aaaaaa;
 }
 
 input[type=text], input[type=email], select, textarea {
