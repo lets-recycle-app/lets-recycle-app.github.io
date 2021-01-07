@@ -12,6 +12,9 @@ function AdminSidebar() {
             <NavLink to="/admin/map">Depot Map</NavLink>
         </li>
         <li className="admin-menu-item">
+            <NavLink to="/admin/postcode">PostCodes</NavLink>
+        </li>
+        <li className="admin-menu-item">
             <NavLink to="/admin/drivers-list">Driver's list</NavLink>
         </li>
     </ul>
