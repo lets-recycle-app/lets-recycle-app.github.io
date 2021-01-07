@@ -120,20 +120,24 @@ function FormReport() {
       let now = new Date().toISOString().substring(0, 19).replace("T", " ");
       const collectionRequest = {
         id: collectionId,
-        datetime: now,
+        datetimeCreated: now,
         locationType: locationType.value,
         name: inputName.value,
         email: inputEmail.value,
-        apliance: inputAppliance.value,
+        appliance: inputAppliance.value,
         houseNo: inputHouseNo.value,
         street: inputStreet.value,
         town: inputTown.value,
         postcode: inputPostcode.value,
-        item: inputAppliance.value,
         notes: inputNotes.value,
-        type: "collection",
-/*         longitude: inputPostcode.long,
-        latitude: inputPostcode.lat */
+        errandType: "collection",
+        completed: false,
+        datetimeCompleted: "0000-00-00 00:00:00",
+        longitude: "",
+        latitude: "",
+        driverId: "",
+        waitingList: false,
+        assignedDate: ""
       };
      console.log(collectionRequest);
       let colReq = [];

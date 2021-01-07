@@ -11,7 +11,8 @@ import AdminHeader from './components/AdminHeader/AdminHeader.js';
 import AdminSidebar from './components/AdminSidebar/AdminSidebar.js';
 import PageContentLanding from './components/PageContentLanding/PageContentLanding.js';
 import PageAbout from './components/PageAbout/PageAbout.js';
-import PageDriversList from './components/PageDriversList/PageDriversList.js';
+import AdminDriversList from './components/AdminDriversList/AdminDriversList.js';
+import AdminCollectionRequests from './components/AdminCollectionRequests/AdminCollectionRequests.js';
 import AdminDepotMap from "./components/AdminDepotMap/AdminDepotMap";
 import AdminData from "./components/AdminData/AdminData";
 import AdminPostCode from "./components/AdminPostCode/AdminPostCode";
@@ -55,11 +56,21 @@ function App() {
             <div className="admin-container">
               <AdminSidebar />
               <div className="main-column">
-                < PageDriversList />
+                < AdminDriversList />
               </div>
             </div>
             <Footer />
           </Route>
+          <Route path="/admin/all-requests">
+            <AdminHeader />
+            <div className="admin-container">
+              <AdminSidebar />
+              <div className="main-column">
+                < AdminCollectionRequests />
+              </div>
+            </div>
+            <Footer />
+          </Route>          
           <Route path="/admin/map">
             <AdminHeader />
             <div className="admin-container">

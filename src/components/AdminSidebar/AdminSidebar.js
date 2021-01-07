@@ -17,6 +17,9 @@ function AdminSidebar() {
         <li className="admin-menu-item">
             <NavLink to="/admin/drivers-list">Driver's list</NavLink>
         </li>
+        <li className="admin-menu-item">
+            <NavLink to="/admin/all-requests">All Collection Requests</NavLink>
+        </li>
     </ul>
     </div>
     );
