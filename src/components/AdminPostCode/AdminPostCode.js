@@ -1,57 +1,42 @@
-import React, { useState, useMemo } from 'react';
-import 'devextreme/dist/css/dx.common.css';
-import 'devextreme/dist/css/dx.light.css';
-import Form, { Label, SimpleItem } from 'devextreme-react/form';
-
+import React, { useState} from 'react';
 import './AdminPostCode.css';
-
-const data = { isAddressRequired: false, Address: '' };
 
 const AdminPostCode = () => {
 
-  let [visible, setVisible] = useState(false);
+  const [postCode, setPostCode] = useState("");
 
-  const checkBoxOptions = useMemo(() => {
-    return {
-      text: "Display PostCode",
-      onValueChanged: (e) => {
-        setVisible(e.value);
+  let inputCode = {
+    background: "#ffffff"
+  }
+
+  const validatePostcode = () => {
+    return true
+  }
+
+  const handleClick = () => {
+
+    if(validatePostcode(postCode)) {
+      inputCode = {
+        color: "#73f175",
       }
     }
-  }, []);
 
-  const addressOptions = useMemo(() => {
-    return {
-      placeholder: 'Enter postcode',
-      maxLength: 50
-    }
-  }, []);
+    setPostCode("");
+  }
 
   return (
-
     <div>
-
-      <Form formData={data} width={400}>
-
-        <SimpleItem
-          dataField="isAddressRequired"
-          editorType="dxCheckBox"
-          editorOptions={checkBoxOptions}>
-          <Label visible={false} />
-        </SimpleItem>
-
-        <SimpleItem
-          dataField="Address"
-          editorType="dxTextBox"
-          editorOptions={addressOptions}
-          visible={visible}
-        />
-
-      </Form>
-
+      <label htmlFor="input-post-code">Validate Post Code</label>
+      <input
+        value={ postCode }
+        onChange={ (e) => setPostCode(e.target.value) }
+        id="input-post-code"
+        className={inputCode}
+      >
+      </input>
+      <button onClick={ handleClick} className="button button-checkcode">Check</button>
     </div>
   );
 }
-
 
 export default AdminPostCode;

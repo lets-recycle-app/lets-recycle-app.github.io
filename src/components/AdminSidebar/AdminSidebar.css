@@ -1,23 +1,39 @@
 .admin-menu {
-    list-style:none;
-    padding:0;
-    margin:0;
+    alignment: left;
     background-color: #333333;
     color: #eeddee;
     min-height: 400px;
     height: 100%;
-    alignment: left;
+    margin: 0;
+    list-style:none;
+    padding-left: 4px;
+    padding-right: 4px;
+    width: fit-content;
 }
 .admin-menu-item {
     display: block;
 }
+
 .admin-menu-item a {
-    padding: 15px;
+    alignment: left;
+    padding: 13px;
     display: block;
     text-decoration: none;
     color: #cccccc;
 }
 .admin-menu-item a.active {
     background-color: #666666;
-    color: #ffffff;
+    color: #12c35a;
+}
+
+body {
+    background: #f5eddd;
+}
+
+.main-column {
+    alignment: left;
+    margin: 0;
+    height: auto;
+    display: flex;
+    flex-direction: column;
 }

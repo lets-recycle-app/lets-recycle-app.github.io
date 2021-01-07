@@ -1148,6 +1148,11 @@
   resolved "https://registry.yarnpkg.com/@csstools/normalize.css/-/normalize.css-10.1.0.tgz#f0950bba18819512d42f7197e56c518aa491cf18"
   integrity sha512-ij4wRiunFfaJxjB0BdrYHIH8FxBJpOwNPhhAcunlmPdXudL1WQV1qoP9un6JsEBAgQH+7UXyyjh0g7jTxXK6tg==
 
+"@devexpress/dx-core@^2.7.4":
+  version "2.7.4"
+  resolved "https://registry.yarnpkg.com/@devexpress/dx-core/-/dx-core-2.7.4.tgz#a2fa69f03e6f59acb23086de46bef311c3064da1"
+  integrity sha512-bM56UDr8L0OmTrWYjvC5KkleZrvm/493xiNAzLk1iyQY9Ghbr/viOkDATAlknOEblKWr2l7jGsYIJtzA7f6qLQ==
+
 "@devexpress/utils@1.1":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@devexpress/utils/-/utils-1.1.3.tgz#8d15bb1c660303003ae104c9a43f5faf7a9a198c"
@@ -9368,6 +9373,11 @@ react-scripts@4.0.1:
   optionalDependencies:
     fsevents "^2.1.3"
 
+react-table@^7.1.0:
+  version "7.6.2"
+  resolved "https://registry.yarnpkg.com/react-table/-/react-table-7.6.2.tgz#b60932fa6d457c2bca0da49815cd6a8fe9451f77"
+  integrity sha512-urwNZTieb+xg/+BITUIrqdH5jZfJlw7rKVAAq25iXpBPwbQojLCEKJuGycLbVwn8fzU+Ovly3y8HHNaLNrPCvQ==
+
 react-uuid@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/react-uuid/-/react-uuid-1.0.2.tgz#c77cea91cf38eafb1aaa7910f92621b2ed91b969"
@@ -11231,11 +11241,6 @@ uuid@^8.3.0:
   version "8.3.1"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.1.tgz#2ba2e6ca000da60fce5a196954ab241131e05a31"
   integrity sha512-FOmRr+FmWEIG8uhZv6C2bTgEVXsHk08kE7mPlrBbEe+c3r9pjceVPgupIfNIhc4yx55H69OXANrUaSuu9eInKg==
-
-uuid@^8.3.2:
-  version "8.3.2"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-8.3.2.tgz#80d5b5ced271bb9af6c445f21a1a04c606cefbe2"
-  integrity sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==
 
 v8-compile-cache@^2.0.3:
   version "2.2.0"

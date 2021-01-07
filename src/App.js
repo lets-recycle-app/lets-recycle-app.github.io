@@ -16,6 +16,7 @@ import AdminCollectionRequests from './components/AdminCollectionRequests/AdminC
 import AdminDepotMap from "./components/AdminDepotMap/AdminDepotMap";
 import AdminData from "./components/AdminData/AdminData";
 import AdminPostCode from "./components/AdminPostCode/AdminPostCode";
+import AdminCounter from "./components/AdminCounter/AdminCounter";
 
 function App() {
   return (
@@ -81,12 +82,23 @@ function App() {
             </div>
             <Footer />
           </Route>
+
           <Route path="/admin/postcode">
             <AdminHeader />
             <div className="admin-container">
               <AdminSidebar />
               <div className="main-column">
                 < AdminPostCode />
+              </div>
+            </div>
+            <Footer />
+          </Route>
+          <Route path="/admin/counter">
+            <AdminHeader />
+            <div className="admin-container">
+              <AdminSidebar />
+              <div className="main-column">
+                < AdminCounter/>
               </div>
             </div>
             <Footer />

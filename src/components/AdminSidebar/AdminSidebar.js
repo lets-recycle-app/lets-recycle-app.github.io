@@ -3,7 +3,7 @@ import "./AdminSidebar.css";
 
 function AdminSidebar() {
     return (
-    <div className="side-column">
+    <div>
     <ul className="admin-menu">
         <li className="admin-menu-item">
             <NavLink exact to="/admin">Route Data</NavLink>
@@ -16,6 +16,9 @@ function AdminSidebar() {
         </li>
         <li className="admin-menu-item">
             <NavLink to="/admin/drivers-list">Driver's list</NavLink>
+        </li>
+        <li className="admin-menu-item">
+            <NavLink to="/admin/counter">Test Counter</NavLink>
         </li>
         <li className="admin-menu-item">
             <NavLink to="/admin/all-requests">All Collection Requests</NavLink>
