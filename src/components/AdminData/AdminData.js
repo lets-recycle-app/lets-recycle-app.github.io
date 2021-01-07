@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import './AdminData.css';
+
 import {defineDatabase,writeDatabase,fetchDatabase} from "../AdminUtils/dbUtils";
+
 
 (async () => {
   const db=await defineDatabase('letsRecycle',['postCodes','routes']);
@@ -20,10 +22,11 @@ import {defineDatabase,writeDatabase,fetchDatabase} from "../AdminUtils/dbUtils"
 const AdminData = () => {
 
   return (
-      <div>
-        <p>Route Data</p>
-      </div>
-    );
+    <div>
+      <p>Route Data</p>
+    </div>
+  );
+
 }
 
 export default AdminData;

@@ -14,6 +14,7 @@ import PageAbout from './components/PageAbout/PageAbout.js';
 import PageDriversList from './components/PageDriversList/PageDriversList.js';
 import AdminDepotMap from "./components/AdminDepotMap/AdminDepotMap";
 import AdminData from "./components/AdminData/AdminData";
+import AdminPostCode from "./components/AdminPostCode/AdminPostCode";
 
 function App() {
   return (
@@ -65,6 +66,16 @@ function App() {
               <AdminSidebar />
               <div className="main-column">
                 < AdminDepotMap />
+              </div>
+            </div>
+            <Footer />
+          </Route>
+          <Route path="/admin/postcode">
+            <AdminHeader />
+            <div className="admin-container">
+              <AdminSidebar />
+              <div className="main-column">
+                < AdminPostCode />
               </div>
             </div>
             <Footer />
