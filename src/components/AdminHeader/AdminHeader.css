@@ -1,0 +1,10 @@
+/* header */
+header {   
+    background-color: #12c35a;
+}
+
+/* menu */
+.navbar > .admin-container > a {
+    padding: 15px;
+    color: #ffffff;
+}

@@ -29,13 +29,13 @@ function FormReport() {
     setInputName({ value: "" });
     setInputEmail({ value: "" });
   }
-
-  const lookupPostcode = async (code) => {
+/* Postcode validation that I cant get to work */
+/*   const lookupPostcode = async (code) => {
     const postcodes = require('node-postcodes.io');
     const result = await postcodes.lookup(code);
     return result;
   }
-
+ */
   const validateForm = e => {
     let errorMsg = [];
     //console.log(locationType, inputName, inputEmail, inputAppliance, inputHouseNo,inputStreet, inputTown, inputPostcode, inputNotes);
@@ -45,33 +45,33 @@ function FormReport() {
     }
     if (locationType.value === "private property") {
       if (inputName.value === "") {
-        errorMsg.push("Please enter your forename and surname.");
+        errorMsg.push("Please enter your Forename and Surname.");
         setInputName({ value: "", css: "borderRed" });
       }
       var validator = require("email-validator");
       if (inputEmail.value === "" || validator.validate(inputEmail.value) !== true) {
-        errorMsg.push("Please enter a valid email.");
+        errorMsg.push("Please enter a valid Email.");
         setInputEmail({ value: inputEmail.value, css: "borderRed" });
       }
     }
     if (inputAppliance.value === "") {
-      errorMsg.push("Please select appliance type.");
+      errorMsg.push("Please select Appliance Type.");
       setInputAppliance({ value: "", css: "borderRed" });
     }
     if (inputHouseNo.value === "") {
-      errorMsg.push("Please enter house/building number.");
+      errorMsg.push("Please enter House/Building number.");
       setInputHouseNo({ value: "", css: "borderRed" });
     }
     if (inputStreet.value === "") {
-      errorMsg.push("Please enter street.");
+      errorMsg.push("Please enter Street.");
       setInputStreet({ value: "", css: "borderRed" });
     }
     if (inputTown.value === "") {
-      errorMsg.push("Please enter town or city.");
+      errorMsg.push("Please enter Town or City.");
       setInputTown({ value: "", css: "borderRed" });
     }
     if (inputPostcode.value === "") {
-      errorMsg.push("Please enter postcode.");
+      errorMsg.push("Please enter Postcode.");
       setInputPostcode({ value: "", css: "borderRed" });
     } 
 /*     else {
@@ -167,7 +167,9 @@ function FormReport() {
   return (
     <form onSubmit={submitForm}>
       <div className={messageOnSubmit.css}>
-        {messageOnSubmit.msg.map((line, i) => <MsgLine line={line} key={i} />)}
+        { messageOnSubmit.msg.map(line =>
+            <span>{line}</span>
+            )}
       </div>
       <div className="form-row">
         <label>Type of location</label>
@@ -308,14 +310,6 @@ function FormReport() {
       </div>
     </form>
   );
-}
-
-function MsgLine(props) {
-  //console.log('aaa', props.msgArray, props.css);
-  return (
-    <span>{props.line}</span>
-  );
-
 }
 
 export default FormReport;
