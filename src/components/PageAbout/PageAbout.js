@@ -26,7 +26,7 @@ function PageAbout() {
             Please put out your appliance in front of your property.
             </p>
             <p><strong>What if I need to change/cancel the collection on the agreed date?</strong><br/>
-            You need your collection ID. Go to <a href="/manage">this page</a> and use it to bring your collectin for an edit.</p>
+            You need your collection ID. Go to <a href="/manage-collection">this page</a> and use it to bring your collectin for an edit.</p>
 
         </div>
     );

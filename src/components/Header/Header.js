@@ -14,9 +14,9 @@ function Header() {
               <li className="nav-item">
                 <NavLink to="/about" activeClassName="active">About</NavLink>
               </li>
-{/*               <li className="nav-item">
-                <NavLink to="/admin" activeClassName="active">Admin</NavLink>
-              </li> */}
+              <li className="nav-item">
+                <NavLink to="/manage-collection" activeClassName="active">Manage Collection</NavLink>
+              </li>
             </ul>
           </div>
         </nav>
