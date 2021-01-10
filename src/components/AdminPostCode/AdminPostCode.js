@@ -1,28 +1,24 @@
-import React, { useState} from 'react';
+import { useState } from 'react';
 import './AdminPostCode.css';
 
 const AdminPostCode = () => {
-
-  const [postCode, setPostCode] = useState("");
+  const [postCode, setPostCode] = useState('');
 
   let inputCode = {
-    background: "#ffffff"
-  }
+    background: '#ffffff',
+  };
 
-  const validatePostcode = () => {
-    return true
-  }
+  const validatePostcode = () => true;
 
   const handleClick = () => {
-
-    if(validatePostcode(postCode)) {
+    if (validatePostcode(postCode)) {
       inputCode = {
-        color: "#73f175",
-      }
+        color: '#73f175',
+      };
     }
 
-    setPostCode("");
-  }
+    setPostCode('');
+  };
 
   return (
     <div>
@@ -37,6 +33,6 @@ const AdminPostCode = () => {
       <button onClick={ handleClick} className="button button-checkcode">Check</button>
     </div>
   );
-}
+};
 
 export default AdminPostCode;

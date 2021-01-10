@@ -1,8 +1,8 @@
-import {Link} from "react-router-dom";
+import { Link } from 'react-router-dom';
 import './AdminHeader.css';
 
 function AdminHeader() {
-return (
+  return (
         <header>
             <nav className="navbar">
               <div className="admin-container">
@@ -10,6 +10,6 @@ return (
               </div>
             </nav>
           </header>
-);
+  );
 }
 export default AdminHeader;

@@ -21,20 +21,17 @@ export const getRandomInt = (min = 0, max = 2) => {
  */
 
 export const isPostCodeValid = async (codeToCheck) => {
-  const postCodeDetails= await getPostCodeDetails(codeToCheck);
+  const postCodeDetails = await getPostCodeDetails(codeToCheck);
   return postCodeDetails.status !== 404;
-}
+};
 
 /**
  *
  * @param codeToCheck
  * @returns {Promise<unknown>}
  */
-export const getPostCodeDetails = async (codeToCheck) => {
-  return await postcodes.lookup(codeToCheck,
-    {filter: 'postcode,longitude,latitude'}
-  );
-}
+export const getPostCodeDetails = async (codeToCheck) => await postcodes.lookup(codeToCheck,
+  { filter: 'postcode,longitude,latitude' });
 
 /**
  * Calculates the haversine distance in miles or km between two (latitude,longitude) coordinates.
@@ -44,7 +41,7 @@ export const getPostCodeDetails = async (codeToCheck) => {
  */
 
 export const distanceBetween = ([latA, lonA], [latB, lonB], inMiles = true) => {
-  const toRadian = angle => (Math.PI / 180) * angle;
+  const toRadian = (angle) => (Math.PI / 180) * angle;
   const distance = (a, b) => (Math.PI / 180) * (a - b);
   const RADIUS_OF_EARTH_IN_KM = 6371;
 
@@ -55,9 +52,8 @@ export const distanceBetween = ([latA, lonA], [latB, lonB], inMiles = true) => {
   latB = toRadian(latB);
 
   // Haversine Formula
-  const a =
-    Math.pow(Math.sin(dLat / 2), 2) +
-    Math.pow(Math.sin(dLon / 2), 2) * Math.cos(latA) * Math.cos(latB);
+  const a = Math.pow(Math.sin(dLat / 2), 2)
+    + Math.pow(Math.sin(dLon / 2), 2) * Math.cos(latA) * Math.cos(latB);
   const c = 2 * Math.asin(Math.sqrt(a));
 
   let finalDistance = RADIUS_OF_EARTH_IN_KM * c;
@@ -68,5 +64,3 @@ export const distanceBetween = ([latA, lonA], [latB, lonB], inMiles = true) => {
 
   return finalDistance;
 };
-
-

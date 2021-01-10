@@ -2,8 +2,8 @@ import './App.css';
 import {
   HashRouter as Router,
   Switch,
-  Route
-} from "react-router-dom";
+  Route,
+} from 'react-router-dom';
 import Header from './components/Header/Header.js';
 import Footer from './components/Footer/Footer.js';
 import Sidebar from './components/Sidebar/Sidebar.js';
@@ -14,10 +14,10 @@ import PageAbout from './components/PageAbout/PageAbout.js';
 import PageManageCollection from './components/PageManageCollection/PageManageCollection.js';
 import AdminDriversList from './components/AdminDriversList/AdminDriversList.js';
 import AdminCollectionRequests from './components/AdminCollectionRequests/AdminCollectionRequests.js';
-import AdminDepotMap from "./components/AdminDepotMap/AdminDepotMap";
-import AdminData from "./components/AdminData/AdminData";
-import AdminPostCode from "./components/AdminPostCode/AdminPostCode";
-import AdminCounter from "./components/AdminCounter/AdminCounter";
+import AdminDepotMap from './components/AdminDepotMap/AdminDepotMap.js';
+import AdminData from './components/AdminData/AdminData.js';
+import AdminPostCode from './components/AdminPostCode/AdminPostCode.js';
+import AdminCounter from './components/AdminCounter/AdminCounter.js';
 
 function App() {
   return (
@@ -47,7 +47,7 @@ function App() {
               <Sidebar />
             </div>
             <Footer />
-          </Route>          
+          </Route>
           {/* admin  */}
           <Route exact path="/admin">
             <AdminHeader />
@@ -78,7 +78,7 @@ function App() {
               </div>
             </div>
             <Footer />
-          </Route>          
+          </Route>
           <Route path="/admin/map">
             <AdminHeader />
             <div className="admin-container">

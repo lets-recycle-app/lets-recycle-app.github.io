@@ -1,5 +1,5 @@
+import { Link } from 'react-router-dom';
 import FormReport from '../FormReport/FormReport.js';
-import {Link} from "react-router-dom";
 
 function PageContentLanding() {
   return (

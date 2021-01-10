@@ -1,8 +1,8 @@
-import {NavLink} from "react-router-dom";
-import "./AdminSidebar.css";
+import { NavLink } from 'react-router-dom';
+import './AdminSidebar.css';
 
 function AdminSidebar() {
-    return (
+  return (
     <div>
     <ul className="admin-menu">
         <li className="admin-menu-item">
@@ -25,7 +25,7 @@ function AdminSidebar() {
         </li>
     </ul>
     </div>
-    );
+  );
 }
 
 export default AdminSidebar;
