@@ -16,11 +16,14 @@ AOs scheduled delivery routes to the recycling pick up address.
 <br />
 The latest beta version of the app can be viewed at:
 <br />
+<br />
 [Customer Page](https://lets-recycle-app.github.io)
+<br />
 <br />
 [Admin Page](https://lets-recycle-app.github.io/#/admin)
 <br />
 <br />
 The project story map is show below.
+<br />
 <br />
 ![Story Map](docs/readme-story-map.svg)
