@@ -1,4 +1,4 @@
-## Let's Recycle App
+### Let's Recycle App
 
 <span style="font-size: 144%; ">
 This app allows a customer to make an online request 
