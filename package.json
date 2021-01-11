@@ -52,6 +52,7 @@
   "homepage": "https://lets-recycle-app.github.io",
   "devDependencies": {
     "@devexpress/dx-core": "^2.7.4",
+    "@types/jest": "^26.0.20",
     "@types/react": "^17.0.0",
     "@types/react-router": "^5.1.11",
     "@types/react-router-dom": "^5.1.7",
