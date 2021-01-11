@@ -1,7 +1,7 @@
 ### Let's Recycle App
 
 This app allows a customer to make an online request 
-AO for an appliance recycling collection from their 
+to AO for an appliance recycling collection from their 
 home address. It is also possible to request a collection 
 from a neighbourhood address for an appliance that has been abandoned.
 <br />
