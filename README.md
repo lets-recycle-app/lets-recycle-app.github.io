@@ -22,4 +22,4 @@ The latest beta version of the app can be viewed at:
 
 The project story map is show below.
 
-![Story Map](docs/readme-story-map.png)
+![Story Map](docs/readme-story-map.svg)
