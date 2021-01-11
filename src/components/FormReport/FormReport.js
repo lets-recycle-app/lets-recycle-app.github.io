@@ -1,6 +1,7 @@
 import './FormReport.css';
 import { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import validator from 'email-validator';
 
 const appliances = [
   { id: 'Big Fridge', weighting: '1.0' },
@@ -36,7 +37,8 @@ function FormReport() {
     return result;
   }
  */
-  const validateForm = (e) => {
+
+  const validateForm = () => {
     const errorMsg = [];
     // console.log(locationType, inputName, inputEmail, inputAppliance, inputHouseNo,inputStreet, inputTown, inputPostcode, inputNotes);
     if (locationType.value === '') {
@@ -48,7 +50,6 @@ function FormReport() {
         errorMsg.push('Please enter your Forename and Surname.');
         setInputName({ value: '', css: 'borderRed' });
       }
-      const validator = require('email-validator');
       if (inputEmail.value === '' || validator.validate(inputEmail.value) !== true) {
         errorMsg.push('Please enter a valid Email.');
         setInputEmail({ value: inputEmail.value, css: 'borderRed' });

@@ -3,7 +3,7 @@ import { openDB } from 'idb';
 export const defineDatabase = async (dbName, storeList) => {
   const version = 1;
 
-  return await openDB(dbName, version, {
+  return openDB(dbName, version, {
     upgrade(db) {
       storeList.forEach((storeName) => {
         if (!db.objectStoreNames.contains(storeName)) {
