@@ -1,9 +1,12 @@
+import React from 'react';
 import './App.css';
+
 import {
   HashRouter as Router,
   Switch,
   Route,
 } from 'react-router-dom';
+
 import Header from './components/Header/Header.js';
 import Footer from './components/Footer/Footer.js';
 import Sidebar from './components/Sidebar/Sidebar.js';

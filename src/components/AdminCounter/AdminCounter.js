@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './AdminCounter.css';
 
 import { defineDatabase, writeDatabase, fetchDatabase } from '../AdminUtils/dbUtils.js';

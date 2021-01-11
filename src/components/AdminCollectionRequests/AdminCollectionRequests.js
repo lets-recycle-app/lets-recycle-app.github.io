@@ -1,3 +1,4 @@
+import React from 'react';
 import { hardcodedRequests } from './CollectionRequestsData.js';
 
 function AdminCollectionRequests() {

@@ -6,14 +6,12 @@
       "jsx": true
     }
   },
-  "env": {
-    "browser": true,
-    "commonjs": true,
-    "es2021": true,
-    "jest": true
-  },
+  "plugins": [
+    "react"
+  ],
   "extends": [
-    "airbnb-base"
+    "airbnb-base",
+    "plugin:react/recommended"
   ],
   "settings": {
     "import/resolver": {
@@ -25,14 +23,16 @@
     }
   },
   "rules": {
+    "react/jsx-uses-react": "error",
+    "react/prop-types": "off",
+    "react/jsx-key": "off",
     "no-console": "off",
     "max-len": 0,
     "import/extensions": [
       "error",
       "ignorePackages",
       {
-        "js": "always",
-        "jsx": "never"
+        "js": "always"
       }
     ]
   }

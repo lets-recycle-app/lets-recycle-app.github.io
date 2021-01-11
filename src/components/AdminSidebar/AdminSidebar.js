@@ -1,3 +1,4 @@
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './AdminSidebar.css';
 
@@ -15,7 +16,7 @@ function AdminSidebar() {
             <NavLink to="/admin/postcode">PostCodes</NavLink>
         </li>
         <li className="admin-menu-item">
-            <NavLink to="/admin/drivers-list">Driver's list</NavLink>
+            <NavLink to="/admin/drivers-list">Driver&apos;s list</NavLink>
         </li>
         <li className="admin-menu-item">
             <NavLink to="/admin/counter">Test Counter</NavLink>

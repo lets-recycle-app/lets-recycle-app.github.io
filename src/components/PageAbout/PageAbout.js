@@ -1,3 +1,5 @@
+import React from 'react';
+
 const appliances = [
   { id: 'Big Fridge', weighting: '1.0' },
   { id: 'Freezer', weighting: '1.0' },

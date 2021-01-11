@@ -1,3 +1,5 @@
+import React from 'react';
+
 function PageManageCollection() {
   return (
     <div className="main-column">
