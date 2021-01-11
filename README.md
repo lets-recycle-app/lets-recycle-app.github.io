@@ -3,7 +3,7 @@
 This app allows a customer to make an online request 
 to AO for an appliance recycling collection from 
 their home address. It is also possible to request a 
-pick-up from a neighbourhood address for an appliance 
+collection from a neighbourhood address for an appliance 
 that has been abandoned.
 
 The customer can choose a suitable collection time from a selection
