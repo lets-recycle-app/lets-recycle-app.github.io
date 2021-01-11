@@ -1,6 +1,5 @@
 ### Let's Recycle App
 
-<span style="font-size: 160%; ">
 This app allows a customer to make an online request 
 AO for an appliance recycling collection from their 
 home address. It is also possible to request a collection 
@@ -25,4 +24,3 @@ The latest beta version of the app can be viewed at:
 The project story map is show below.
 <br />
 ![Story Map](docs/readme-story-map.svg)
-</span>
