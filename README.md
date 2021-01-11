@@ -23,7 +23,7 @@ The latest beta version of the app can be viewed at:
 [Admin Page](https://lets-recycle-app.github.io/#/admin)
 <br />
 <br />
-The project story map is show below.
+The project story map is shown below.
 <br />
 <br />
 ![Story Map](docs/readme-story-map.svg)
