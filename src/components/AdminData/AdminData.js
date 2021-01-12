@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTable } from 'react-table';
 import { columns, data } from './depotList.js';
+
 import './AdminData.css';
 
 function AdminData() {
