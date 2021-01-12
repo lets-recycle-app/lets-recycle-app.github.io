@@ -7,7 +7,6 @@ function PageContentLanding() {
       <h1>Report old house appliance</h1>
       <p>We recycle old house appliances. Let us know if you have one at home or spotted one dumped in public area.</p>
       <Link to="/about">Learn more...</Link>
-      <p><strong>Fill in the form to request collection of a scrap appliance.</strong></p>
       <FormReport />
     </div>
   );

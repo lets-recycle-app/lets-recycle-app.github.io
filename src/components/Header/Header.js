@@ -9,7 +9,7 @@ function Header() {
             <Link to="/" >&#9851; <span>Let's Recycle</span></Link>
             <ul className="navbar-nav">
               <li className="nav-item">
-                <NavLink to="/" activeClassName="active">Home</NavLink>
+                <NavLink exact to="/" activeClassName="active">Home</NavLink>
               </li>
               <li className="nav-item">
                 <NavLink to="/about" activeClassName="active">About</NavLink>

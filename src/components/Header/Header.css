@@ -26,6 +26,9 @@ header {
     text-decoration: none;
     color: #ffffff;
 }
+.nav-item a.active {
+    text-decoration: underline;
+}
 @media (max-width: 600px){
     .navbar .container {
       flex-direction: row;

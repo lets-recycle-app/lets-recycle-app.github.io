@@ -1,4 +1,17 @@
+import { useState } from "react";
+import FormCollectionDates from "./../FormCollectionDates/FormCollectionDates.js";
+
+
 function PageManageCollection() {
+  let collectionDates = ["2021-03-15", "2021-04-18", "2021-05-20"];
+
+  const handleClick = e => {
+    console.log("value=", e.target.value);
+  }
+  const confirmDate = (e, approvedDate) => {
+    e.preventDefault();
+    //console.log(approvedDate);
+  }
   return (
     <div className="main-column">
       <h1>Manage your collection</h1>
@@ -12,6 +25,7 @@ function PageManageCollection() {
               id="inputID"
               name="inputID"
               value=""
+              onChange={handleClick}
             />
           </div>
         </div>
@@ -23,7 +37,7 @@ function PageManageCollection() {
                 type="radio"
                 name="actionType"
                 id="inlineRadio1"
-                onChange=""
+                onChange={handleClick}
                 value="delete"
                 checked=""
               />
@@ -35,7 +49,7 @@ function PageManageCollection() {
                 name="actionType"
                 id="inlineRadio2"
                 value="editDate"
-                onChange=""
+                onChange={handleClick}
                 checked=""
               />
               <label htmlFor="inlineRadio2">Request Another Collection Date </label>
@@ -47,7 +61,7 @@ function PageManageCollection() {
           <button type="submit">Submit</button>
         </div>
       </form>
-      {/* <FormReport /> */}
+      <FormCollectionDates dates={collectionDates} confirmDate={confirmDate} />
     </div>
   );
 }
