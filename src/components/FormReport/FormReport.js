@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './FormReport.css';
 import { v4 as uuidv4 } from 'uuid';
+import validator from 'email-validator';
 import FormCollectionDates from "./../FormCollectionDates/FormCollectionDates.js";
 import getDatesForPostcode from "./../FormUtils/getDateForPostcode.js"
 
