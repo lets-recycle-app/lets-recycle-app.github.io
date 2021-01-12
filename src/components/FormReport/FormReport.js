@@ -1,5 +1,5 @@
-import "./FormReport.css";
-import { useState } from "react";
+import React, { useState } from 'react';
+import './FormReport.css';
 import { v4 as uuidv4 } from 'uuid';
 import FormCollectionDates from "./../FormCollectionDates/FormCollectionDates.js";
 import getDatesForPostcode from "./../FormUtils/getDateForPostcode.js"
@@ -27,7 +27,7 @@ function FormReport() {
   const [collectionRequest, setCollectionRequest] = useState({});
 
   /* do this on submission??? */
-  const handleRadioPublic = e => {
+  const handleRadioPublic = (e) => {
     setLocationType({ value: e.target.value });
     setInputName({ value: "" });
     setInputEmail({ value: "" });
@@ -46,32 +46,31 @@ function FormReport() {
       errorMsg.push("Please select Location Type");
       setLocationType({ value: "", css: "textRed" });
     }
-    if (locationType.value === "private property") {
-      if (inputName.value === "") {
-        errorMsg.push("Please enter your Forename and Surname.");
-        setInputName({ value: "", css: "borderRed" });
+    if (locationType.value === 'private property') {
+      if (inputName.value === '') {
+        errorMsg.push('Please enter your Forename and Surname.');
+        setInputName({ value: '', css: 'borderRed' });
       }
-      var validator = require("email-validator");
-      if (inputEmail.value === "" || validator.validate(inputEmail.value) !== true) {
-        errorMsg.push("Please enter a valid Email.");
-        setInputEmail({ value: inputEmail.value, css: "borderRed" });
+      if (inputEmail.value === '' || validator.validate(inputEmail.value) !== true) {
+        errorMsg.push('Please enter a valid Email.');
+        setInputEmail({ value: inputEmail.value, css: 'borderRed' });
       }
     }
-    if (inputAppliance.value === "") {
-      errorMsg.push("Please select Appliance Type.");
-      setInputAppliance({ value: "", css: "borderRed" });
+    if (inputAppliance.value === '') {
+      errorMsg.push('Please select Appliance Type.');
+      setInputAppliance({ value: '', css: 'borderRed' });
     }
-    if (inputHouseNo.value === "") {
-      errorMsg.push("Please enter House/Building number.");
-      setInputHouseNo({ value: "", css: "borderRed" });
+    if (inputHouseNo.value === '') {
+      errorMsg.push('Please enter House/Building number.');
+      setInputHouseNo({ value: '', css: 'borderRed' });
     }
-    if (inputStreet.value === "") {
-      errorMsg.push("Please enter Street.");
-      setInputStreet({ value: "", css: "borderRed" });
+    if (inputStreet.value === '') {
+      errorMsg.push('Please enter Street.');
+      setInputStreet({ value: '', css: 'borderRed' });
     }
-    if (inputTown.value === "") {
-      errorMsg.push("Please enter Town or City.");
-      setInputTown({ value: "", css: "borderRed" });
+    if (inputTown.value === '') {
+      errorMsg.push('Please enter Town or City.');
+      setInputTown({ value: '', css: 'borderRed' });
     }
     if (inputPostcode.value === "") {
       errorMsg.push("Please enter Postcode.");
@@ -91,12 +90,12 @@ function FormReport() {
         } */
     //console.log(errorMsg);
     return errorMsg;
-  }
+  };
 
-  const submitForm = e => {
+  const submitForm = (e) => {
     e.preventDefault();
-    let validation = validateForm(e);
-    //there was an error
+    const validation = validateForm(e);
+    // there was an error
     if (validation.length > 0) {
       setSubmissionOutcome({ msg: validation, css: "errorMsg" });
     } else {
@@ -115,12 +114,12 @@ function FormReport() {
         town: inputTown.value,
         postcode: inputPostcode.value,
         notes: inputNotes.value,
-        errandType: "collection",
+        errandType: 'collection',
         completed: false,
-        datetimeCompleted: "0000-00-00 00:00:00",
-        longitude: "",
-        latitude: "",
-        driverId: "",
+        datetimeCompleted: '0000-00-00 00:00:00',
+        longitude: '',
+        latitude: '',
+        driverId: '',
         waitingList: false,
         assignedDate: ""
       });
@@ -184,7 +183,7 @@ function FormReport() {
     } else {
       setSubmissionOutcome({ msg: ["You didn't select any date, and your request was aborted. Feel free to try some other time. "], css: "successMsg" });
     }
-  }
+  };
 
   const clearFormInputs = () => {
       //clear the form inputs

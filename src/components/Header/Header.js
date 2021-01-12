@@ -1,12 +1,13 @@
-import "./Header.css";
-import {Link, NavLink} from "react-router-dom";
+import React from 'react';
+import './Header.css';
+import { Link, NavLink } from 'react-router-dom';
 
 function Header() {
-    return (
+  return (
         <header>
         <nav className="navbar">
           <div className="container">
-            <Link to="/" >&#9851; <span>Let's Recycle</span></Link>
+            <Link to="/" >&#9851; <span>Let&apos;s Recycle</span></Link>
             <ul className="navbar-nav">
               <li className="nav-item">
                 <NavLink exact to="/" activeClassName="active">Home</NavLink>
@@ -21,7 +22,7 @@ function Header() {
           </div>
         </nav>
       </header>
-    );
+  );
 }
 
 export default Header;

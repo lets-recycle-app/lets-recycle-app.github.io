@@ -7,14 +7,20 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "devextreme": "20.2.4",
+    "devextreme-react": "^20.2.4",
     "email-validator": "^2.0.4",
     "gh-pages": "^3.1.0",
+    "idb": "^6.0.0",
     "node-postcodes.io": "^1.0.2",
-    "react-table": "^7.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
+    "react-table": "^7.1.0",
+    "react-hook-form": "^6.14.1",
+    "uuid": "^8.3.2",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
@@ -24,7 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "route-test": "node ./src/components/AdminUtils/routeTest.js"
+    "eslint": "eslint --fix ./"
   },
   "eslintConfig": {
     "extends": [
@@ -47,11 +53,14 @@
   "homepage": "https://lets-recycle-app.github.io",
   "devDependencies": {
     "@devexpress/dx-core": "^2.7.4",
-    "devexpress-diagram": "2.0.5",
-    "devextreme": "20.2.4",
-    "devextreme-react": "^20.2.4",
-    "dotenv": "^8.2.0",
-    "idb": "^5.0.8",
-    "react-uuid": "^1.0.2"
+    "@types/jest": "^26.0.20",
+    "@types/react": "^17.0.0",
+    "@types/react-router": "^5.1.11",
+    "@types/react-router-dom": "^5.1.7",
+    "@types/react-table": "^7.0.26",
+    "eslint": "^7.17.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-react": "^7.22.0"
   }
 }

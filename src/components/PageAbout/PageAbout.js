@@ -1,13 +1,15 @@
+import React from 'react';
+
 const appliances = [
-    {"id": "Big Fridge", "weighting": "1.0"},
-    {"id": "Freezer", "weighting": "1.0"},
-    {"id": "Washer", "weighting": "1.0"},
-    {"id": "Small Fridge", "weighting": "0.5"},
-    {"id": "Dryer", "weighting": "0.5"},
-    {"id": "Oven", "weighting": "0.5"}
-  ];
+  { id: 'Big Fridge', weighting: '1.0' },
+  { id: 'Freezer', weighting: '1.0' },
+  { id: 'Washer', weighting: '1.0' },
+  { id: 'Small Fridge', weighting: '0.5' },
+  { id: 'Dryer', weighting: '0.5' },
+  { id: 'Oven', weighting: '0.5' },
+];
 function PageAbout() {
-    return (
+  return (
         <div className="main-column">
             <h1>About us</h1>
             <h2>Who we are and what we do</h2>
@@ -16,11 +18,9 @@ function PageAbout() {
             <p><strong>What appliances do you accept?</strong><br />
             Currently we accept the following:
             <ul>
-            { appliances.map(item =>
-            <li> {item.id} </li>
-            )}
+            { appliances.map((item) => <li> {item.id} </li>)}
             </ul>
-                
+
             </p>
             <p><strong>What should I do on the collection day?</strong><br />
             Please put out your appliance in front of your property.
@@ -29,7 +29,7 @@ function PageAbout() {
             You need your collection ID. Go to <a href="/manage-collection">this page</a> and use it to bring your collectin for an edit.</p>
 
         </div>
-    );
+  );
 }
 
 export default PageAbout;

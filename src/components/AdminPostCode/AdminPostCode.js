@@ -1,42 +1,28 @@
-import React, { useState} from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import './AdminPostCode.css';
 
 const AdminPostCode = () => {
+  const { register, handleSubmit } = useForm();
 
-  const [postCode, setPostCode] = useState("");
-
-  let inputCode = {
-    background: "#ffffff"
-  }
-
-  const validatePostcode = () => {
-    return true
-  }
-
-  const handleClick = () => {
-
-    if(validatePostcode(postCode)) {
-      inputCode = {
-        color: "#73f175",
-      }
-    }
-
-    setPostCode("");
-  }
+  const onSubmit = (data) => {
+    console.log('Data: ', data);
+  };
 
   return (
     <div>
-      <label htmlFor="input-post-code">Validate Post Code</label>
-      <input
-        value={ postCode }
-        onChange={ (e) => setPostCode(e.target.value) }
-        id="input-post-code"
-        className={inputCode}
-      >
-      </input>
-      <button onClick={ handleClick} className="button button-checkcode">Check</button>
+      <p className = "pc-form__title"> Check Post Code </p>
+
+      <form className="pc-form" onSubmit={handleSubmit(onSubmit)}>
+        <label className="pc-form__label">First Code</label>
+        <input className="pc-form__input" name="postcodeA" ref={register({ required: true, maxLength: 7 })}/>
+        <label className="pc-form__label">Last Code</label>
+        <input className="pc-form__input" name="postcodeB" ref={register}/>
+
+        <input className="pc-form__input" type="submit" />
+      </form>
     </div>
   );
-}
+};
 
 export default AdminPostCode;

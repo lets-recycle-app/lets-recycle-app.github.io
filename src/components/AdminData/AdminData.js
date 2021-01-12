@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTable } from 'react-table';
-import { columns, data } from './depotList';
+import { columns, data } from './depotList.js';
+
 import './AdminData.css';
 
 function AdminData() {
@@ -18,29 +19,26 @@ function AdminData() {
   return (
     <table {...getTableProps()}>
       <thead>
-      {headerGroups.map(headerGroup => (
+      {headerGroups.map((headerGroup) => (
         <tr {...headerGroup.getHeaderGroupProps()}>
-          {headerGroup.headers.map(column => (
+          {headerGroup.headers.map((column) => (
             <th {...column.getHeaderProps()}>{column.render('Header')}</th>
           ))}
         </tr>
       ))}
       </thead>
       <tbody {...getTableBodyProps()}>
-      {rows.map((row, i) => {
-        prepareRow(row)
+      {rows.map((row) => {
+        prepareRow(row);
         return (
           <tr {...row.getRowProps()}>
-            {row.cells.map(cell => {
-              return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-            })}
+            {row.cells.map((cell) => <td {...cell.getCellProps()}>{cell.render('Cell')}</td>)}
           </tr>
-        )
+        );
       })}
       </tbody>
     </table>
   );
 }
-
 
 export default AdminData;
