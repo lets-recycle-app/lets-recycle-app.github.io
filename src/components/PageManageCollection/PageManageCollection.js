@@ -1,17 +1,15 @@
-import { useState } from "react";
-import FormCollectionDates from "./../FormCollectionDates/FormCollectionDates.js";
-
+import React from 'react';
+import FormCollectionDates from '../FormCollectionDates/FormCollectionDates.js';
 
 function PageManageCollection() {
-  let collectionDates = ["2021-03-15", "2021-04-18", "2021-05-20"];
+  const collectionDates = ['2021-03-15', '2021-04-18', '2021-05-20'];
 
-  const handleClick = e => {
-    console.log("value=", e.target.value);
-  }
-  const confirmDate = (e, approvedDate) => {
+  const handleClick = (e) => {
+    console.log('value=', e.target.value);
+  };
+  const confirmDate = (e) => {
     e.preventDefault();
-    //console.log(approvedDate);
-  }
+  };
   return (
     <div className="main-column">
       <h1>Manage your collection</h1>
