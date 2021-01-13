@@ -33,20 +33,17 @@ function FormCollectionDates(props) {
           <small>If none of the dates is selected, this request will be cancelled. You can try some other time.</small>
         </label>
         <div>
-          {dates.map((date, n) =>
-            <div key={n}>
+          {dates.map((date, n) => <div key={n}>
               <input
                 type="radio"
                 name="approvedDate"
-                id={"dateRadio" + n}
+                id={`dateRadio${n}`}
                 onChange={handleRadioData}
                 value={date}
                 checked={approvedDate === date}
               />
-              <label htmlFor={"dateRadio" + n}>{date}</label>
-            </div>
-
-          )}
+              <label htmlFor={`dateRadio${n}`}>{date}</label>
+            </div>)}
         </div>
       </div>
       <div className="form-row text-right">
