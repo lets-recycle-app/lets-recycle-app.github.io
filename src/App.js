@@ -50,7 +50,7 @@ function App() {
               <Sidebar />
             </div>
             <Footer />
-          </Route>      
+          </Route>
           {/* admin  */}
           <Route exact path="/admin">
             <AdminHeader />
