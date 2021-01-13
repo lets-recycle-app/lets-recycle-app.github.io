@@ -3,7 +3,8 @@ import { useForm } from 'react-hook-form';
 import './AdminPostCode.css';
 
 const AdminPostCode = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, errors } = useForm();
+  // const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const onSubmit = (data) => {
     console.log('Data: ', data);
@@ -11,15 +12,24 @@ const AdminPostCode = () => {
 
   return (
     <div>
-      <p className = "pc-form__title"> Check Post Code </p>
+      <p className = "admin__title"> Check Post Code </p>
+      <form className="admin-form" onSubmit={handleSubmit(onSubmit)}>
+      <table className="admin-table">
+          <row>
+            <td>
+                <label className="pc-form__label">Post Code</label>
+                <input className="pc-form__input" name="postcodeA" ref={register({ required: true })}/>
+                {errors.postcodeA && <span className="pc-form__error">Required</span>}
+            </td>
+            <td>
+                <label className="pc-form__label">Post Code</label>
+                <input className="pc-form__input" name="postcodeB" ref={register({ required: true })}/>
+                {errors.postcodeB && <span className="pc-form__error">Required</span>}
 
-      <form className="pc-form" onSubmit={handleSubmit(onSubmit)}>
-        <label className="pc-form__label">First Code</label>
-        <input className="pc-form__input" name="postcodeA" ref={register({ required: true, maxLength: 7 })}/>
-        <label className="pc-form__label">Last Code</label>
-        <input className="pc-form__input" name="postcodeB" ref={register}/>
-
-        <input className="pc-form__input" type="submit" />
+            </td>
+          </row>
+          <input className="pc-form__input" type="submit" />
+        </table>
       </form>
     </div>
   );

@@ -1,3 +1,18 @@
+:root {
+  /* global css colours */
+  --ao-color: #12c35a;
+  --alt-color: #d7226a;
+  --theme-color: var(--ao-color);
+  --theme-header-color: var(--ao-color);
+  --theme-background-color: #f5eddd;
+  --theme-button-color: #12c35a;
+  --theme-text-color: #1b9dde;
+}
+
+body {
+  background-color: var(--theme-background-color);
+}
+
 /* Flexbox */
 .container, .admin-container {
   display: flex;
@@ -9,6 +24,7 @@
   padding: 15px;
 }
 .admin-container .side-column {
+  border:0;
   padding: 0;
 }
 

@@ -16,7 +16,7 @@
     margin-right: 5px;
 }
 .drivers-list-item .green {
-    background-color: #68ca5b;
+    background-color: var(--theme-color);
 }
 .drivers-list-item .blue {
     background-color: #58e2ec;

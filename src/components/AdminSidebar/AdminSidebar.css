@@ -10,6 +10,11 @@
     padding-right: 4px;
     width: fit-content;
 }
+
+.admin-table {
+    border: 0;
+}
+
 .admin-menu-item {
     display: block;
 }
@@ -23,11 +28,11 @@
 }
 .admin-menu-item a.active {
     background-color: #666666;
-    color: #12c35a;
+    color: var(--theme-color);
 }
 
-body {
-    background: #f5eddd;
+.admin-menu-body {
+    background: var(--theme-background-color);
 }
 
 .main-column {

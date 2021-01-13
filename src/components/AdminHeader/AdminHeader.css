@@ -1,6 +1,6 @@
 /* header */
 header {   
-    background-color: #12c35a;
+    background-color: var(--theme-header-color);
 }
 
 /* menu */
