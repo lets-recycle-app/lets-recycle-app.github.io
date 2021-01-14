@@ -108,6 +108,7 @@ function FormManageCollection() {
               type="text"
               id="inputRef"
               name="inputRef"
+              placeholder="To test, use Ref No = 1234"
               className = {inputRef.css}
               value={inputRef.value}
               onChange={(e) => setInputRef({ value: e.target.value })}
