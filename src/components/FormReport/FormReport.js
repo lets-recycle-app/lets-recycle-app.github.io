@@ -354,7 +354,7 @@ function FormReport() {
         </div>
       </form>
       <div hidden={submissionOutcome.showDateForm ? '' : 'hidden'}>
-        <FormCollectionDates dates={collectionDates} confirmDate={confirmDate} />
+        <FormCollectionDates dates={collectionDates} confirmDate={confirmDate} operation="create"/>
       </div>
     </div>
   );

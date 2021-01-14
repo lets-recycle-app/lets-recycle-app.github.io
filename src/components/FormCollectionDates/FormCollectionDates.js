@@ -22,14 +22,16 @@ function FormCollectionDates(props) {
   const handleForm = (e) => {
     // console.log("date=", approvedDate);
     props.confirmDate(e, approvedDate);
+    setApprovedDate('');
   };
+  const formMessage = (props.operation === 'create' ? 'If none of the dates is selected, this request will be cancelled. You can try some other time.' : 'If none of the dates is selected, your current collection date will not be changed.');
 
   return (
     <form onSubmit={handleForm}>
-      <p><strong>Available collection date(s) are listed below. Select one that suits you and confirm.</strong></p>
+      <p><strong>Available collection date(s) listed below. Select one that suits you and confirm.</strong></p>
       <div className="form-row">
         <label>Available Date(s)<br />
-          <small>If none of the dates is selected, this request will be cancelled. You can try some other time.</small>
+          <small>{formMessage}</small>
         </label>
         <div>
           {dates2.map((date, n) => <div key={n}>
