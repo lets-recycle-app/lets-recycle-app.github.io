@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import validator from 'email-validator';
 import FormCollectionDates from '../FormCollectionDates/FormCollectionDates.js';
 import getDatesForPostcode from '../FormUtils/getDateForPostcode.js';
+import { isPostCodeValid } from '../AdminUtils/routeUtils.js';
 
 const appliances = [
   { id: 'Big Fridge', weighting: '1.0' },
@@ -26,6 +27,23 @@ function FormReport() {
   const [inputNotes, setInputNotes] = useState({ value: '' });
   const [submissionOutcome, setSubmissionOutcome] = useState({ msg: [] });
   const [collectionRequest, setCollectionRequest] = useState({});
+  const [postcodeError, setPostcodeError] = useState('');
+
+  const handleBlur = (e) => {
+    // console.log(e.target.value);
+    if (e.target.value.length > 0) {
+      isPostCodeValid(e.target.value)
+        .then((result) => {
+          console.log('result= ', result);
+          if (result.status !== true) {
+            setPostcodeError('Please enter a valid Postcode.');
+          } else {
+            setPostcodeError('');
+          }
+        });
+    }
+    // console.log(postcodeError);
+  };
 
   /* do this on submission??? */
   const handleRadioPublic = (e) => {
@@ -77,18 +95,14 @@ function FormReport() {
       errorMsg.push('Please enter Postcode.');
       setInputPostcode({ value: '', css: 'borderRed' });
     }
-    /*     else {
-          //function above returns a promise, I deal with it here
-          lookupPostcode(inputPostcode.value)
-          .then(result => {
-              //console.log('result= ', result);
-            if(result.status !== 200){
-              errorMsg.push("Please enter a correct UK postcode.");
-              setInputPostcode({ value: inputPostcode.value, css: "borderRed" });
-              return errorMsg;
-            }
-          });
-        } */
+
+    if (postcodeError.length > 0) {
+      console.log('error= ', postcodeError);
+      errorMsg.push(postcodeError);
+      setInputPostcode({ value: inputPostcode.value, css: 'borderRed' });
+    } else {
+      setInputPostcode({ value: inputPostcode.value, css: '' });
+    }
     // console.log(errorMsg);
     return errorMsg;
   };
@@ -104,6 +118,7 @@ function FormReport() {
     setInputTown({ value: '' });
     setInputPostcode({ value: '' });
     setInputNotes({ value: '' });
+    setPostcodeError('');
   };
 
   const saveInLocalStorage = (request) => {
@@ -332,6 +347,7 @@ function FormReport() {
               value={inputPostcode.value}
               className={inputPostcode.css}
               onChange={(e) => setInputPostcode({ value: e.target.value })}
+              onBlur={handleBlur}
             />
           </div>
         </div>
@@ -354,7 +370,7 @@ function FormReport() {
         </div>
       </form>
       <div hidden={submissionOutcome.showDateForm ? '' : 'hidden'}>
-        <FormCollectionDates dates={collectionDates} confirmDate={confirmDate} operation="create"/>
+        <FormCollectionDates dates={collectionDates} confirmDate={confirmDate} operation="create" />
       </div>
     </div>
   );

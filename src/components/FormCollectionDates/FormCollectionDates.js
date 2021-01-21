@@ -5,7 +5,7 @@ function FormCollectionDates(props) {
   const dates1 = props.dates;
   let dates2 = props.dates;
   if (dates1.length > 0) {
-    const clear = ['unselect all'];
+    const clear = ['unselect date'];
     dates2 = dates1.concat(clear);
   }
   // console.log("dates=", dates2);
