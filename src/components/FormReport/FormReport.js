@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import './FormReport.css';
 import { v4 as uuidv4 } from 'uuid';
@@ -27,38 +28,15 @@ function FormReport() {
   const [inputNotes, setInputNotes] = useState({ value: '' });
   const [submissionOutcome, setSubmissionOutcome] = useState({ msg: [] });
   const [collectionRequest, setCollectionRequest] = useState({});
-  const [postcodeError, setPostcodeError] = useState('');
 
-  const handleBlur = (e) => {
-    // console.log(e.target.value);
-    if (e.target.value.length > 0) {
-      isPostCodeValid(e.target.value)
-        .then((result) => {
-          console.log('result= ', result);
-          if (result.status !== true) {
-            setPostcodeError('Please enter a valid Postcode.');
-          } else {
-            setPostcodeError('');
-          }
-        });
-    }
-    // console.log(postcodeError);
-  };
-
-  /* do this on submission??? */
+  /* do this on submission */
   const handleRadioPublic = (e) => {
     setLocationType({ value: e.target.value });
     setInputName({ value: '' });
     setInputEmail({ value: '' });
   };
-  /* Postcode validation that I cant get to work */
-  /*   const lookupPostcode = async (code) => {
-      const postcodes = require('node-postcodes.io');
-      const result = await postcodes.lookup(code);
-      return result;
-    }
-   */
-  const validateForm = () => {
+
+  const validateForm = async () => {
     const errorMsg = [];
     // console.log(locationType, inputName, inputEmail, inputAppliance, inputHouseNo,inputStreet, inputTown, inputPostcode, inputNotes);
     if (locationType.value === '') {
@@ -94,14 +72,15 @@ function FormReport() {
     if (inputPostcode.value === '') {
       errorMsg.push('Please enter Postcode.');
       setInputPostcode({ value: '', css: 'borderRed' });
-    }
-
-    if (postcodeError.length > 0) {
-      console.log('error= ', postcodeError);
-      errorMsg.push(postcodeError);
-      setInputPostcode({ value: inputPostcode.value, css: 'borderRed' });
     } else {
-      setInputPostcode({ value: inputPostcode.value, css: '' });
+      const validPostcode = await (isPostCodeValid(inputPostcode.value));
+      //console.log(validPostcode);
+      if (!validPostcode) {
+        errorMsg.push('Please enter a valid Postcode.');
+        setInputPostcode({ value: inputPostcode.value, css: 'borderRed' });
+        return errorMsg;
+      }
+      //console.log('Lorem Ipsum!!!'); 
     }
     // console.log(errorMsg);
     return errorMsg;
@@ -118,7 +97,6 @@ function FormReport() {
     setInputTown({ value: '' });
     setInputPostcode({ value: '' });
     setInputNotes({ value: '' });
-    setPostcodeError('');
   };
 
   const saveInLocalStorage = (request) => {
@@ -134,19 +112,20 @@ function FormReport() {
     localStorage.setItem('colRequest', JSON.stringify(colReq));
   };
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
-    const validation = validateForm(e);
+
+    const validation = await (validateForm(e));
+
     // there was an error
     if (validation.length > 0) {
       setSubmissionOutcome({ msg: validation, css: 'errorMsg' });
     } else {
       // save request in a state
       const collectionId = uuidv4();
-      const now = new Date().toISOString().substring(0, 19).replace('T', ' ');
+      // const now = new Date().toISOString().substring(0, 19).replace('T', ' ');
       setCollectionRequest({
-        id: collectionId,
-        datetimeCreated: now,
+        refNo: collectionId,
         locationType: locationType.value,
         name: inputName.value,
         email: inputEmail.value,
@@ -156,14 +135,6 @@ function FormReport() {
         town: inputTown.value,
         postcode: inputPostcode.value,
         notes: inputNotes.value,
-        errandType: 'collection',
-        completed: false,
-        datetimeCompleted: '0000-00-00 00:00:00',
-        longitude: '',
-        latitude: '',
-        driverId: '',
-        waitingList: false,
-        assignedDate: '',
       });
       // console.log(collectionRequest);
 
@@ -184,25 +155,11 @@ function FormReport() {
       }
       setSubmissionOutcome({ msg: ['Your request was sent.'], css: 'successMsg' });
 
-      // console.log('success');
-      // function above returns a promise, I deal with it here
-      /*       lookupPostcode(inputPostcode.value)
-            .then(result => {
-             // console.log('result= ', result);
-              if(result.status === 200){
-                setInputPostcode({
-                  value: inputPostcode.value,
-                  css: "",
-                  long: result.result.longitude,
-                  lat: result.result.latitude
-                });
-              }
-            }); */
       saveInLocalStorage(collectionRequest);
       clearFormInputs();
     }
   };
-  // this must be passed to FormDates component
+  // this must be passed to FormDates component!!!
   const confirmDate = (e, approvedDate) => {
     e.preventDefault();
     // console.log(approvedDate);
@@ -347,7 +304,6 @@ function FormReport() {
               value={inputPostcode.value}
               className={inputPostcode.css}
               onChange={(e) => setInputPostcode({ value: e.target.value })}
-              onBlur={handleBlur}
             />
           </div>
         </div>
