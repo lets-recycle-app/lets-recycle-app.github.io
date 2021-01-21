@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useState } from 'react';
 import './FormReport.css';
 import { v4 as uuidv4 } from 'uuid';
@@ -74,13 +73,12 @@ function FormReport() {
       setInputPostcode({ value: '', css: 'borderRed' });
     } else {
       const validPostcode = await (isPostCodeValid(inputPostcode.value));
-      //console.log(validPostcode);
+      // console.log(validPostcode);
       if (!validPostcode) {
         errorMsg.push('Please enter a valid Postcode.');
         setInputPostcode({ value: inputPostcode.value, css: 'borderRed' });
         return errorMsg;
       }
-      //console.log('Lorem Ipsum!!!'); 
     }
     // console.log(errorMsg);
     return errorMsg;
@@ -114,9 +112,7 @@ function FormReport() {
 
   const submitForm = async (e) => {
     e.preventDefault();
-
     const validation = await (validateForm(e));
-
     // there was an error
     if (validation.length > 0) {
       setSubmissionOutcome({ msg: validation, css: 'errorMsg' });
@@ -127,12 +123,12 @@ function FormReport() {
       setCollectionRequest({
         refNo: collectionId,
         locationType: locationType.value,
-        name: inputName.value,
-        email: inputEmail.value,
-        appliance: inputAppliance.value,
+        customerName: inputName.value,
+        customerEmail: inputEmail.value,
+        itemType: inputAppliance.value,
         houseNo: inputHouseNo.value,
         street: inputStreet.value,
-        town: inputTown.value,
+        townAddress: inputTown.value,
         postcode: inputPostcode.value,
         notes: inputNotes.value,
       });
