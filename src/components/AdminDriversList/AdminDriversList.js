@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { hardcodedRequests } from '../AdminCollectionRequests/CollectionRequestsData.js';
 import DriversListItem from '../DriversListItem/DriversListItem.js';
 
 function AdminDriversList() {
@@ -11,10 +10,7 @@ function AdminDriversList() {
     storageItems = storageItems.reverse();
   }
   // console.log(storageItems);
-  const hardcodedItems = hardcodedRequests.requests;
-  const allItems = storageItems.concat(hardcodedItems);
-  // console.log(allItems);
-  const [driversItems] = useState(allItems);
+  const [driversItems] = useState(storageItems);
 
   // get items with todays date and driver's id
   // const todaysDriversItems = dirversItems.filter(item => item.datetime === "2020-12-17" && item.driverId === 3);

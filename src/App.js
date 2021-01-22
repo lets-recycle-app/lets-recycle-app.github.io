@@ -16,7 +16,6 @@ import PageContentLanding from './components/PageContentLanding/PageContentLandi
 import PageAbout from './components/PageAbout/PageAbout.js';
 import PageManageCollection from './components/PageManageCollection/PageManageCollection.js';
 import AdminDriversList from './components/AdminDriversList/AdminDriversList.js';
-import AdminCollectionRequests from './components/AdminCollectionRequests/AdminCollectionRequests.js';
 import AdminDepotMap from './components/AdminDepotMap/AdminDepotMap.js';
 import AdminData from './components/AdminData/AdminData.js';
 import AdminPostCode from './components/AdminPostCode/AdminPostCode.js';
@@ -68,16 +67,6 @@ function App() {
               <AdminSidebar />
               <div className="main-column">
                 < AdminDriversList />
-              </div>
-            </div>
-            <Footer />
-          </Route>
-          <Route path="/admin/all-requests">
-            <AdminHeader />
-            <div className="admin-container">
-              <AdminSidebar />
-              <div className="main-column">
-                < AdminCollectionRequests />
               </div>
             </div>
             <Footer />
