@@ -35,6 +35,9 @@ body {
     max-width:400px;
     margin: 0 auto;
   }
+  .mobile-hidden {
+    display: none;
+  }
 }
 @media (min-width: 600px) and (max-width: 800px){
   .container {
@@ -62,5 +65,10 @@ body {
   }
   .side-column {
     flex-grow: 1;
+  } 
+}
+@media (min-width: 601px) {
+  .mobile-visible {
+    display: none;
   } 
 }

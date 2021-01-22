@@ -1,5 +1,4 @@
 .admin-menu {
-    alignment: left;
     background-color: #333333;
     color: #eeddee;
     min-height: 400px;
@@ -41,4 +40,12 @@
     height: auto;
     display: flex;
     flex-direction: column;
+}
+/* Media queries */
+@media (max-width: 600px){
+    .admin-menu {
+        width: 100%;
+        min-height: auto;
+    }
+
 }

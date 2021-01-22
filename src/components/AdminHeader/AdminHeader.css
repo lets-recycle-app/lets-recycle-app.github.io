@@ -4,7 +4,37 @@ header {
 }
 
 /* menu */
+.navbar > .admin-container {
+    flex-direction: row;
+}
 .navbar > .admin-container > a {
     padding: 15px;
     color: #ffffff;
+}
+.navbar > .admin-container > a {
+    flex-grow: 3;
+}
+.navbar > .admin-container > span {
+    flex-grow: 1;
+    text-align: right;
+    padding-right: 20px;
+} 
+
+/* Media queries */
+@media (max-width: 600px){
+    .hamburger-icon {
+        display: inline-block;
+        margin-top: 10px;
+        width: 30px;
+        height: 30px;
+        background: url('../../images/hamburger.png') no-repeat;
+        background-size: 60px 30px;
+        cursor: pointer;
+    }
+    .hamburger-icon.open {
+        background-position: -31px 50%;
+    }
+    .hamburger-icon .close {
+        background-position: left;
+    }
 }
