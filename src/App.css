@@ -27,6 +27,9 @@ body {
   border:0;
   padding: 0;
 }
+.v-align-top {
+  vertical-align: top;
+}
 
 /* Media queries */
 @media (max-width: 600px){

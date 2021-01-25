@@ -33,7 +33,8 @@ function FormCollectionDates(props) {
         <label>Available Date(s)<br />
           <small>{formMessage}</small>
         </label>
-        <div>
+        <div className="v-align-top">
+          <br />
           {dates2.map((date, n) => <div key={n}>
               <input
                 type="radio"
