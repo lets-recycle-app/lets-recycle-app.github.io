@@ -1,41 +1,58 @@
 import React, { useState } from 'react';
+import DatePicker from 'react-datepicker';
 import DriversListItem from '../DriversListItem/DriversListItem.js';
+import 'react-datepicker/dist/react-datepicker.css';
+
+const formatDate = (myDate) => {
+  let day = myDate.getDate();
+  if (day < 10) { day = `0${day}`; }
+  let month = (myDate.getMonth() + 1);
+  if (month < 10) { month = `0${month}`; }
+  const year = myDate.getFullYear();
+  return `${day}-${month}-${year}`;
+};
+
+let storageItems = [];
+if (localStorage.getItem('colRequest')) {
+  storageItems = JSON.parse(localStorage.getItem('colRequest'));
+  storageItems = storageItems.reverse();
+}
+// console.log(storageItems);
 
 function AdminDriversList() {
-  const now = new Date().toISOString().substring(0, 19).replace('T', ' ');
-  const [dateSelected, setDateSelected] = useState(now);
-  let storageItems = [];
-  if (localStorage.getItem('colRequest')) {
-    storageItems = JSON.parse(localStorage.getItem('colRequest'));
-    storageItems = storageItems.reverse();
-  }
-  // console.log(storageItems);
-  const [driversItems] = useState(storageItems);
+  const now = new Date();
+  const [startDate, setStartDate] = useState(now);
+  const [formatedDate, setFormatedDate] = useState(formatDate(now));
+  const [driversItems, setDriversItems] = useState(storageItems);
 
-  // get items with todays date and driver's id
-  // const todaysDriversItems = dirversItems.filter(item => item.datetime === "2020-12-17" && item.driverId === 3);
-  const todaysDriversItems = driversItems;
+  const handleForm = (e) => {
+    e.preventDefault();
+    // call for route items for this date ??
+    setDriversItems([]);
+    setFormatedDate(formatDate(startDate));
+  };
 
   return (
     <div className="main-column">
-      <h1>Your todays route is listed below.</h1>
-      <form>
+      <h1>Your {formatDate(now) === formatedDate ? `todays (${formatedDate})` : `${formatedDate}`} route is listed below.</h1>
+      <form onSubmit={handleForm} >
         <div className="form-row">
           <label htmlFor="id">Select another date:</label>
-          <div>
-            <input
-              type="text"
+          <div className="datePickerWrap">
+            <DatePicker
               id="dateSelected"
               name="dateSelected"
-              value={dateSelected}
-              onChange={(e) => setDateSelected({ value: e.target.value })}
+              selected={startDate}
+              onChange={date => setStartDate(date)} // eslint-disable-line
+              dateFormat="dd-MM-yyyy"
             />
           </div>
+          <button type="submit">Confirm</button>
         </div>
       </form>
-
-      { todaysDriversItems.map((item) => <DriversListItem
-        key={item.id}
+      {driversItems.length === 0 ? 'No items found for this date.' : ''}
+      { driversItems.map((item, n) => <DriversListItem
+        key={n}
         id={item.id}
         name={item.name}
         email={item.email}
