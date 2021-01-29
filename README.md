@@ -44,6 +44,4 @@ It has been designed and built with mobile-first reponsive principles in mind.
 
 ### Other repos of this project
 
-[Backend Lambda Functions](https://github.com/lets-recycle-app/lets-recycle-app-lambda)
-<br/>
 [Backend Database Functions](https://github.com/lets-recycle-app/lets-recycle-app-backend)
