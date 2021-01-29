@@ -21,9 +21,6 @@ function AdminMenu() {
         <li className="admin-menu-item">
             <NavLink to="/admin/counter">Test Counter</NavLink>
         </li>
-        <li className="admin-menu-item">
-            <NavLink to="/admin/all-requests">All Collection Requests</NavLink>
-        </li>
     </ul>
     </div>
   );

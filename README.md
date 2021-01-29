@@ -27,3 +27,23 @@ The project story map is shown below.
 <br />
 <br />
 ![Story Map](docs/readme-story-map.svg)
+<br />
+
+### Technology Used
+
+This project uses the following technology:
+
+- ReactJS
+- JavaScript (ES2015+)
+- CSS
+- Webpack
+- Axios
+- ESLint
+
+It has been designed and built with mobile-first reponsive principles in mind.
+
+### Other roepos of this project
+
+[Backend Lambda Functions](https://github.com/lets-recycle-app/lets-recycle-app-lambda)
+<br/>
+[Backend Database Functions](https://github.com/lets-recycle-app/lets-recycle-app-backend)
