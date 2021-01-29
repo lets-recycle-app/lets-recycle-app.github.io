@@ -1,35 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import DriversListItem from '../DriversListItem/DriversListItem.js';
 import 'react-datepicker/dist/react-datepicker.css';
+import { makeGetCall } from '../AdminUtils/makeAxiosCalls.js';
+import { formatDate } from '../AdminUtils/formatDate.js';
 
-const formatDate = (myDate) => {
-  let day = myDate.getDate();
-  if (day < 10) { day = `0${day}`; }
-  let month = (myDate.getMonth() + 1);
-  if (month < 10) { month = `0${month}`; }
-  const year = myDate.getFullYear();
-  return `${day}-${month}-${year}`;
+// eslint-disable-next-line
+const getDriversItems = async (driverId, date) => {
+  // console.log('date= ', date);
+  // eslint-disable-next-line
+  driverId = '10';
+  const url = `https://a0br3o0i7b.execute-api.eu-west-2.amazonaws.com/api/drivers/${driverId}`;
+  const data = await makeGetCall(url);
+  console.log(data);
+  const myArray = [];
+  if (data[0].driverName) {
+    myArray.push(data[0].driverName);
+  }
+  return myArray;
 };
-
-let storageItems = [];
-if (localStorage.getItem('colRequest')) {
-  storageItems = JSON.parse(localStorage.getItem('colRequest'));
-  storageItems = storageItems.reverse();
-}
-// console.log(storageItems);
 
 function AdminDriversList() {
   const now = new Date();
   const [startDate, setStartDate] = useState(now);
   const [formatedDate, setFormatedDate] = useState(formatDate(now));
-  const [driversItems, setDriversItems] = useState(storageItems);
+  const [dbDate, setDbDate] = useState(formatDate(now, 'db'));
+  const [driversItems, setDriversItems] = useState([]);
+  useEffect(async () => {
+    // This is be executed when `loading` state changes
+    const drItems = await getDriversItems(1, dbDate);
+    console.log('drItems= ', drItems, 'dbDate=', dbDate);
+  }, [dbDate]);
 
   const handleForm = (e) => {
     e.preventDefault();
     // call for route items for this date ??
     setDriversItems([]);
     setFormatedDate(formatDate(startDate));
+    setDbDate(formatDate(startDate, 'db'));
   };
 
   return (

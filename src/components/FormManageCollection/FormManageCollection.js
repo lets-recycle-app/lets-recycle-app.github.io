@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FormCollectionDates from '../FormCollectionDates/FormCollectionDates.js';
 import getDatesForPostcode from '../FormUtils/getDateForPostcode.js';
+// import { makeGetCall, makePostCall } from '../AdminUtils/makeAxiosCalls.js';
 
 let collectionDates = [];
 
@@ -31,7 +32,7 @@ function FormManageCollection() {
     setInputRef({ value: '' });
   };
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
     const validation = validateForm(e);
     // there was an error
@@ -41,6 +42,8 @@ function FormManageCollection() {
       // get request form the db
       const colReq = { id: '1', ref: '1234', postcode: '123 ABC' };
       setCollectionRequest(colReq);
+
+
       // if request not found
       if (inputRef.value !== colReq.ref) {
         setSubmissionOutcome({ msg: ['No request with provided Ref Number was found.'], css: 'errorMsg' });
@@ -49,7 +52,8 @@ function FormManageCollection() {
       }
       if (inputActionType.value === 'editDate') {
         // get the dates
-        collectionDates = getDatesForPostcode(colReq.postcode);
+        collectionDates = await getDatesForPostcode(colReq.postcode);
+        // console.log('colDates in form file = ', collectionDates);
         // show form if dates not empty
         if (collectionDates.length > 0) {
           setSubmissionOutcome({ msg: [], css: '', showDateForm: true });

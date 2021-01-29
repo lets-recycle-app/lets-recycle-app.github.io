@@ -13,7 +13,7 @@ function FormCollectionDates(props) {
 
   const handleRadioData = (e) => {
     // console.log("value=", e.target.value);
-    if (e.target.value !== 'unselect all') {
+    if (e.target.value !== 'unselect date') {
       setApprovedDate(e.target.value);
     } else {
       setApprovedDate('');
