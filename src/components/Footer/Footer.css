@@ -1,5 +1,5 @@
 footer {
-    background-color: #666666;
+    background-color: var(--theme-footer-color);
     color: #eeeeee;
 }
 footer > .container {

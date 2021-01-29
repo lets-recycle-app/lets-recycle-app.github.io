@@ -7,10 +7,11 @@
   --theme-background-color: #f5eddd;
   --theme-button-color: #12c35a;
   --theme-text-color: #1b9dde;
+  --theme-footer-color:  #666666;
 }
 
 body {
-  background-color: var(--theme-background-color);
+  background-color: var(--theme-footer-color);
 }
 
 /* Flexbox */
@@ -18,6 +19,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  align-items: stretch;
 }
 .main-column, .side-column {
   flex-basis : 0;
@@ -29,6 +31,13 @@ body {
 }
 .v-align-top {
   vertical-align: top;
+}
+
+.admin-container > div > div {
+  height: 100%;
+}
+.App {
+  background-color: var(--theme-background-color);
 }
 
 /* Media queries */
