@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-// import getDatesForPostcode from "./../FormUtils/getDateForPostcode.js"
 
 function FormCollectionDates(props) {
   const dates1 = props.dates;
@@ -8,11 +7,9 @@ function FormCollectionDates(props) {
     const clear = ['unselect date'];
     dates2 = dates1.concat(clear);
   }
-  // console.log("dates=", dates2);
   const [approvedDate, setApprovedDate] = useState('');
 
   const handleRadioData = (e) => {
-    // console.log("value=", e.target.value);
     if (e.target.value !== 'unselect date') {
       setApprovedDate(e.target.value);
     } else {
@@ -20,7 +17,6 @@ function FormCollectionDates(props) {
     }
   };
   const handleForm = (e) => {
-    // console.log("date=", approvedDate);
     props.confirmDate(e, approvedDate);
     setApprovedDate('');
   };

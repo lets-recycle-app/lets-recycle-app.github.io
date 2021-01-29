@@ -13,7 +13,6 @@ function FormManageCollection() {
 
   const validateForm = () => {
     const errorMsg = [];
-    // console.log(locationId);
     if (inputRef.value === '') {
       errorMsg.push('Please enter request ref no.');
       setInputRef({ value: '', css: 'textRed' });
@@ -22,7 +21,6 @@ function FormManageCollection() {
       errorMsg.push('Please select Operation.');
       setInputActionType({ value: '', css: 'textRed' });
     }
-    // console.log(errorMsg);
     return errorMsg;
   };
 
@@ -42,7 +40,6 @@ function FormManageCollection() {
       // get request form the db
       const colReq = { id: '1', ref: '1234', postcode: '123 ABC' };
       setCollectionRequest(colReq);
-
 
       // if request not found
       if (inputRef.value !== colReq.ref) {
@@ -80,16 +77,13 @@ function FormManageCollection() {
   // this must be passed to FormDates component
   const confirmDate = (e, approvedDate) => {
     e.preventDefault();
-    // console.log(approvedDate);
     if (approvedDate.length > 0) {
-      // console.log(approvedDate);
-      // console.log(collectionRequest);
       // add date to request
       const request = collectionRequest;
       request.assignedDate = approvedDate;
       console.log(request);
       // save request in the db
-      // saveInLocalStorage(request);
+      // some code to save...
       setSubmissionOutcome({ msg: [`Your collection date was changed to ${approvedDate}.`], css: 'successMsg' });
 
       // clear request after saving

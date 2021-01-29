@@ -28,7 +28,7 @@ function FormReport() {
   const [submissionOutcome, setSubmissionOutcome] = useState({ msg: [] });
   const [collectionRequest, setCollectionRequest] = useState({});
 
-  /* do this on submission */
+  /* this clears name and email when user switches to public */
   const handleRadioPublic = (e) => {
     setLocationType({ value: e.target.value });
     setInputName({ value: '' });
@@ -73,14 +73,12 @@ function FormReport() {
       setInputPostcode({ value: '', css: 'borderRed' });
     } else {
       const validPostcode = await (isPostCodeValid(inputPostcode.value));
-      // console.log(validPostcode);
       if (!validPostcode) {
         errorMsg.push('Please enter a valid Postcode.');
         setInputPostcode({ value: inputPostcode.value, css: 'borderRed' });
         return errorMsg;
       }
     }
-    // console.log(errorMsg);
     return errorMsg;
   };
 
@@ -158,10 +156,7 @@ function FormReport() {
   // this must be passed to FormDates component!!!
   const confirmDate = (e, approvedDate) => {
     e.preventDefault();
-    // console.log(approvedDate);
     if (approvedDate.length > 0) {
-      // console.log(approvedDate);
-      // console.log(collectionRequest);
       // add date to request
       const request = collectionRequest;
       request.assignedDate = approvedDate;
@@ -177,7 +172,6 @@ function FormReport() {
     }
   };
 
-  // console.log('lorem', submissionOutcome);
   return (
     <div>
       <form onSubmit={submitForm} hidden={!submissionOutcome.showDateForm ? '' : 'hidden'} >
