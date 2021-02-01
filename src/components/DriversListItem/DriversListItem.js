@@ -4,12 +4,12 @@ import './DriversListItem.css';
 function DriversListItem(props) {
   return (
         <div className="drivers-list-item">
-          <div className= {props.errandType === 'collection' ? 'box-head green' : 'box-head blue'} >
-            <span className="tick-box-icon">{props.completed ? '\u2611' : '\u2610'}</span>
+          <div className= {props.routeAction === 'collection' ? 'box-head green' : 'box-head blue'} >
+{/*             <span className="tick-box-icon">{props.completed ? '\u2611' : '\u2610'}</span> */}
             {props.houseNo} {props.street}, {props.town}, {props.postcode}
           </div>
           <div className="box-body">
-            Reference no: {props.id}
+            Reference no: {props.refNo}
             { props.name !== '' ? <br/> : '' }
             { props.name !== '' ? `Name: ${props.name}` : '' }
             { props.email !== '' ? <br/> : ''}
@@ -17,7 +17,7 @@ function DriversListItem(props) {
             <br/>Item: {props.appliance}
             <br/>Location Type: {props.locationType}
             <br/>Notes: {props.notes}
-            <br/>Status: {props.completed ? 'completed' : 'not completed'}
+            <br/>Status: {props.status}
           </div>
         </div>
   );
