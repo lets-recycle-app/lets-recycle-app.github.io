@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  * this accepts full js date and returns formatted
  * @param {date object} myDate - full js date object
