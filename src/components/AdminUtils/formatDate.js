@@ -4,7 +4,7 @@
  * @param {string} format can be 'user' or 'db'. First returns dd-mm-yyyy, second yyyy-mm-dd. DEFAULT IS USER!!!
  */
 
-export const formatDate = (myDate, format = 'user') => {
+const formatDate = (myDate, format = 'user') => {
   let day = myDate.getDate();
   if (day < 10) { day = `0${day}`; }
   let month = (myDate.getMonth() + 1);
@@ -17,3 +17,4 @@ export const formatDate = (myDate, format = 'user') => {
     return `${year}-${month}-${day}`;
   }
 };
+export default formatDate;

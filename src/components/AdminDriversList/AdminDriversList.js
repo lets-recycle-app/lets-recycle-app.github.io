@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import DriversListItem from '../DriversListItem/DriversListItem.js';
 import 'react-datepicker/dist/react-datepicker.css';
 import { makeGetCall } from '../AdminUtils/makeAxiosCalls.js';
-import { formatDate } from '../AdminUtils/formatDate.js';
+import formatDate from '../AdminUtils/formatDate.js';
 
 // eslint-disable-next-line
 const getDriversItems = async (driverId, date) => {

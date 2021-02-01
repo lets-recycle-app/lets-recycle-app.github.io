@@ -134,7 +134,7 @@ function FormReport() {
 
       if (locationType.value === 'private property') {
         // get the dates
-        collectionDates = getDatesForPostcode(inputPostcode.value);
+        collectionDates = await getDatesForPostcode(inputPostcode.value);
         // show form if dates not empty
         if (collectionDates.length > 0) {
           setSubmissionOutcome({ msg: [], css: '', showDateForm: true });
