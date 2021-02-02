@@ -1,9 +1,10 @@
+/* eslint-disable */
 import React, { useState } from 'react';
 import FormCollectionDates from '../FormCollectionDates/FormCollectionDates.js';
 import getDatesForPostcode from '../FormUtils/getDateForPostcode.js';
-// import { makeGetCall, makePostCall } from '../AdminUtils/makeAxiosCalls.js';
+import { makePutCall, makePostCall } from '../AdminUtils/makeAxiosCalls.js';
 
-let collectionDates = [];
+let collectionDates = { arrDates: [], arrRefNos: [] };
 
 function FormManageCollection() {
   const [inputRef, setInputRef] = useState({ value: '' });
@@ -38,7 +39,7 @@ function FormManageCollection() {
       setSubmissionOutcome({ msg: validation, css: 'errorMsg' });
     } else {
       // get request form the db
-      const colReq = { id: '1', ref: '1234', postcode: '123 ABC' };
+      const colReq = { id: '1', ref: '1234', postcode: 'M18 7TQ' };
       setCollectionRequest(colReq);
 
       // if request not found
@@ -50,9 +51,9 @@ function FormManageCollection() {
       if (inputActionType.value === 'editDate') {
         // get the dates
         collectionDates = await getDatesForPostcode(colReq.postcode);
-        // console.log('colDates in form file = ', collectionDates);
+        // console.log('colDates in form file = ', collectionDates.arrDates);
         // show form if dates not empty
-        if (collectionDates.length > 0) {
+        if (collectionDates.arrDates.length > 0) {
           setSubmissionOutcome({ msg: [], css: '', showDateForm: true });
 
           clearFormInputs();
@@ -75,14 +76,32 @@ function FormManageCollection() {
   };
 
   // this must be passed to FormDates component
-  const confirmDate = (e, approvedDate) => {
+  const confirmDate = async (e, approvedDate, approvedKey) => {
     e.preventDefault();
     if (approvedDate.length > 0) {
       // add date to request
-      const request = collectionRequest;
-      request.assignedDate = approvedDate;
+      // const request = collectionRequest;
+      const request = {
+        locationType: 'private property',
+        customerName: 'Jane Newman',
+        customerEmail: 'aaa@aa.aa',
+        itemType: 'washer',
+        houseNo: '12',
+        street: 'Some St',
+        townAddress: 'Sometown',
+        postcode: 'sk1 2lg',
+        notes: 'lorem ipsum dolor sit amet',
+      };
+      // request.assignedDate = approvedDate;
       console.log(request);
-      // save request in the db
+
+      // save request in the db 
+      const refNo = 'D01R07S04T06';
+      const url = `https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/collect-confirm?refNo=${refNo}`;
+      const data = await makePostCall(url, request);
+
+      console.log(data);
+
       // some code to save...
       setSubmissionOutcome({ msg: [`Your collection date was changed to ${approvedDate}.`], css: 'successMsg' });
 
@@ -96,7 +115,7 @@ function FormManageCollection() {
   return (
     <div>
       <form onSubmit={submitForm} hidden={!submissionOutcome.showDateForm ? '' : 'hidden'}>
-      <div className={submissionOutcome.css}>
+        <div className={submissionOutcome.css}>
           {submissionOutcome.msg.map((line, i) => <span key={i}>{line}</span>)}
         </div>
         <div className="form-row">
@@ -107,7 +126,7 @@ function FormManageCollection() {
               id="inputRef"
               name="inputRef"
               placeholder="To test, use Ref No = 1234"
-              className = {inputRef.css}
+              className={inputRef.css}
               value={inputRef.value}
               onChange={(e) => setInputRef({ value: e.target.value })}
             />
@@ -145,7 +164,7 @@ function FormManageCollection() {
         </div>
       </form>
       <div hidden={submissionOutcome.showDateForm ? '' : 'hidden'}>
-        <FormCollectionDates dates={collectionDates} confirmDate={confirmDate} operation="update"/>
+        <FormCollectionDates dates={collectionDates.arrDates} confirmDate={confirmDate} operation="update" />
       </div>
     </div>
   );

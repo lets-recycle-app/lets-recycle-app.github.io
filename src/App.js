@@ -20,6 +20,7 @@ import AdminDepotMap from './components/AdminDepotMap/AdminDepotMap.js';
 import AdminData from './components/AdminData/AdminData.js';
 import AdminPostCode from './components/AdminPostCode/AdminPostCode.js';
 import AdminCounter from './components/AdminCounter/AdminCounter.js';
+import TestPage from './components/FormUtils/TestPage.js';
 
 function App() {
   return (
@@ -46,6 +47,14 @@ function App() {
             <Header />
             <div className="container">
               <PageManageCollection />
+              <Sidebar />
+            </div>
+            <Footer />
+          </Route>
+          <Route path="/test">
+            <Header />
+            <div className="container">
+              <TestPage />
               <Sidebar />
             </div>
             <Footer />

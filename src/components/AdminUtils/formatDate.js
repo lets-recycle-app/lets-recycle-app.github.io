@@ -5,7 +5,7 @@
  * @param {string} format can be 'user' or 'db'. First returns dd-mm-yyyy, second yyyy-mm-dd. DEFAULT IS USER!!!
  */
 
-const formatDate = (myDate, format = 'user') => {
+export const formatFullDate = (myDate, format = 'user') => {
   let day = myDate.getDate();
   if (day < 10) { day = `0${day}`; }
   let month = (myDate.getMonth() + 1);
@@ -18,4 +18,15 @@ const formatDate = (myDate, format = 'user') => {
     return `${year}-${month}-${day}`;
   }
 };
-export default formatDate;
+
+/**
+ * this accepts yyyy-mm-dd date and returns dd-mm-yyyy
+ * @param {string} dbDate - yyyy-mm-dd
+ */
+export const formatDbDate = (dbDate) => {
+  const day = dbDate.slice(8, 10);
+  const month = dbDate.slice(5, 7);
+  const year = dbDate.slice(0, 4);
+
+  return `${day}-${month}-${year}`;
+};

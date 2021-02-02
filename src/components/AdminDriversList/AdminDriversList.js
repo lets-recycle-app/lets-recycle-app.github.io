@@ -3,7 +3,7 @@ import DatePicker from 'react-datepicker';
 import DriversListItem from '../DriversListItem/DriversListItem.js';
 import 'react-datepicker/dist/react-datepicker.css';
 import { makeGetCall } from '../AdminUtils/makeAxiosCalls.js';
-import formatDate from '../AdminUtils/formatDate.js';
+import { formatFullDate } from '../AdminUtils/formatDate.js';
 
 const names = ['Mary Brown', 'Elizabeth Smith', 'Una Atchley', 'Wilma Tibbs', 'Pia Rucker', 'Tiny Litwin', 'Cameron Amon', 'Jarred Bartos', 'Leisha Tuthill', 'Ismael Pietsch', 'Casandra Lipsett', 'Ardella Bono', 'Saturnina Grenz', 'Amada Rees', 'Derek Sybert', 'Claudette Ruby', 'Trey Norden', 'Merlene Nygren', 'Jackson Catto', 'Breana Becker', 'Madlyn Aaronson'];
 const streets = ['Brown St', 'Red Rd', 'Oak St', 'Leafy St', 'Green St', 'White Rd', 'Grend Ave', 'Randall Close', 'Bridge St', 'Bank Lane', 'West St'];
@@ -25,8 +25,8 @@ const getDriversItems = async (driverId, date) => {
 function AdminDriversList() {
   const now = new Date();
   const [startDate, setStartDate] = useState(now);
-  const [formatedDate, setFormatedDate] = useState(formatDate(now));
-  const [dbDate, setDbDate] = useState(formatDate(now, 'db'));
+  const [formatedDate, setFormatedDate] = useState(formatFullDate(now));
+  const [dbDate, setDbDate] = useState(formatFullDate(now, 'db'));
   const [driversItems, setDriversItems] = useState([]);
   useEffect(async () => {
     // This is be executed when `loading` state changes
@@ -76,13 +76,13 @@ function AdminDriversList() {
     e.preventDefault();
     // call for route items for this date ??
     setDriversItems([]);
-    setFormatedDate(formatDate(startDate));
-    setDbDate(formatDate(startDate, 'db'));
+    setFormatedDate(formatFullDate(startDate));
+    setDbDate(formatFullDate(startDate, 'db'));
   };
 
   return (
     <div className="main-column">
-      <h1>Your {formatDate(now) === formatedDate ? `todays (${formatedDate})` : `${formatedDate}`} route is listed below.</h1>
+      <h1>Your {formatFullDate(now) === formatedDate ? `todays (${formatedDate})` : `${formatedDate}`} route is listed below.</h1>
       <form onSubmit={handleForm} >
         <div className="form-row">
           <label htmlFor="id">Select another date:</label>

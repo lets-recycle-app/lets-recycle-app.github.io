@@ -1,3 +1,4 @@
+/* ?eslint-disable */
 import React, { useState } from 'react';
 
 function FormCollectionDates(props) {
@@ -8,17 +9,21 @@ function FormCollectionDates(props) {
     dates2 = dates1.concat(clear);
   }
   const [approvedDate, setApprovedDate] = useState('');
+  const [approvedKey, setApprovedKey] = useState('');
 
   const handleRadioData = (e) => {
     if (e.target.value !== 'unselect date') {
       setApprovedDate(e.target.value);
+      setApprovedKey(e.target.dataset.key);
     } else {
       setApprovedDate('');
+      setApprovedKey('');
     }
   };
   const handleForm = (e) => {
-    props.confirmDate(e, approvedDate);
+    props.confirmDate(e, approvedDate, approvedKey);
     setApprovedDate('');
+    setApprovedKey('');
   };
   const formMessage = (props.operation === 'create' ? 'If none of the dates is selected, this request will be cancelled. You can try some other time.' : 'If none of the dates is selected, your current collection date will not be changed.');
 
@@ -32,16 +37,17 @@ function FormCollectionDates(props) {
         <div className="v-align-top">
           <br />
           {dates2.map((date, n) => <div key={n}>
-              <input
-                type="radio"
-                name="approvedDate"
-                id={`dateRadio${n}`}
-                onChange={handleRadioData}
-                value={date}
-                checked={approvedDate === date}
-              />
-              <label htmlFor={`dateRadio${n}`}>{date}</label>
-            </div>)}
+            <input
+              type="radio"
+              name="approvedDate"
+              id={`dateRadio${n}`}
+              onChange={handleRadioData}
+              value={date}
+              checked={approvedDate === date}
+              data-key={n}
+            />
+            <label htmlFor={`dateRadio${n}`}>{date}</label>
+          </div>)}
         </div>
       </div>
 

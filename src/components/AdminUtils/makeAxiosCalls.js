@@ -24,12 +24,14 @@ export const makeGetCall = async (url, dataOnly = true) => {
 };
 
 // WARNING!!! NOT TESTED!!!
-export const makePostCall = async (url) => {
-  try {
-    const response = await axios.post(url);
-    // console.log(response);
-    return response;
-  } catch (error) {
-    // console.error(error);
-  }
+
+export const makePostCall = async (url, objBody) => {
+  const config = { headers: {'Content-Type': 'application/json'} };
+  axios.post(url,objBody, config)
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
 };
