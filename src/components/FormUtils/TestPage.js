@@ -1,6 +1,6 @@
 /* eslint-disable */
-//import axios from 'axios';
 import React, { useState, useEffect } from 'react';
+import { makePostCall } from '../AdminUtils/makeAxiosCalls';
 
 function TestPage() {
   useEffect(async () => {
@@ -18,20 +18,14 @@ function TestPage() {
     // request.assignedDate = approvedDate;
     // console.log(request);
 
-    // save request in the db 
-    const axios = require('axios');
+    // save request in the db
 
     const refNo = 'D01R07S04T06';
     const url = `https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/collect-confirm?refNo=${refNo}`;
+    
+    const lorem = await makePostCall(url, request);
 
-    const config = { headers: {'Content-Type': 'application/json'} };
-    axios.post(url, request, config)
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    console.log('lorem = ', lorem);
 
   }, []);
 
