@@ -1,10 +1,11 @@
+/* xeslint-disable */
 import React, { useState } from 'react';
 import './FormReport.css';
-import { v4 as uuidv4 } from 'uuid';
 import validator from 'email-validator';
 import FormCollectionDates from '../FormCollectionDates/FormCollectionDates.js';
 import getDatesForPostcode from '../FormUtils/getDateForPostcode.js';
 import { isPostCodeValid } from '../AdminUtils/routeUtils.js';
+import { makePostCall } from '../AdminUtils/makeAxiosCalls.js';
 
 const appliances = [
   { id: 'Big Fridge', weighting: '1.0' },
@@ -14,7 +15,7 @@ const appliances = [
   { id: 'Dryer', weighting: '0.5' },
   { id: 'Oven', weighting: '0.5' },
 ];
-let collectionDates = [];
+let collectionDatesAndRefs = { arrDates: [], arrRefNos: [] };
 function FormReport() {
   const [locationType, setLocationType] = useState({ value: '' });
   const [inputName, setInputName] = useState({ value: '' });
@@ -37,7 +38,7 @@ function FormReport() {
 
   const validateForm = async () => {
     const errorMsg = [];
-    // console.log(locationType, inputName, inputEmail, inputAppliance, inputHouseNo,inputStreet, inputTown, inputPostcode, inputNotes);
+    // console.log(locationType.value, inputName.value, inputEmail.value, inputAppliance.value, inputHouseNo.value, inputStreet.value, inputTown.value, inputPostcode.value, inputNotes.value);
     if (locationType.value === '') {
       errorMsg.push('Please select Location Type');
       setLocationType({ value: '', css: 'textRed' });
@@ -95,19 +96,6 @@ function FormReport() {
     setInputNotes({ value: '' });
   };
 
-  const saveInLocalStorage = (request) => {
-    let colReq = [];
-    // get storage and turn into array
-    if (localStorage.getItem('colRequest')) {
-      colReq = JSON.parse(localStorage.getItem('colRequest'));
-    }
-    // add new object in the array
-    colReq.push(request);
-
-    // save new to storage
-    localStorage.setItem('colRequest', JSON.stringify(colReq));
-  };
-
   const submitForm = async (e) => {
     e.preventDefault();
     const validation = await (validateForm(e));
@@ -115,11 +103,8 @@ function FormReport() {
     if (validation.length > 0) {
       setSubmissionOutcome({ msg: validation, css: 'errorMsg' });
     } else {
-      // save request in a state
-      const collectionId = uuidv4();
-      // const now = new Date().toISOString().substring(0, 19).replace('T', ' ');
-      setCollectionRequest({
-        refNo: collectionId,
+      // prepare collection request object
+      const objColReq = {
         locationType: locationType.value,
         customerName: inputName.value,
         customerEmail: inputEmail.value,
@@ -129,42 +114,64 @@ function FormReport() {
         townAddress: inputTown.value,
         postcode: inputPostcode.value,
         notes: inputNotes.value,
-      });
-      // console.log(collectionRequest);
+      };
+      setCollectionRequest(objColReq);
+      // console.log('objColReq!! = ', objColReq);
 
-      if (locationType.value === 'private property') {
-        // get the dates
-        collectionDates = await getDatesForPostcode(inputPostcode.value);
-        // show form if dates not empty
-        if (collectionDates.length > 0) {
+      // get the dates
+      collectionDatesAndRefs = await getDatesForPostcode(inputPostcode.value);
+      // console.log('dates and refs = ', collectionDatesAndRefs);
+
+      if (collectionDatesAndRefs.arrDates !== undefined && collectionDatesAndRefs.arrDates.length > 0) {
+        if (locationType.value === 'private property') {
+          // show form if dates not empty
           setSubmissionOutcome({ msg: [], css: '', showDateForm: true });
-
           clearFormInputs();
-          return;
+        } else {
+          // public area request
+          // get params for api call
+          const refNo = collectionDatesAndRefs.arrRefNos[0];
+          const url = `https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/collect-confirm?refNo=${refNo}`;
+          const objBody = objColReq;
+          // console.log(objBody);
+
+          // save request in the db
+          const saveReq = await makePostCall(url, objBody);
+          // console.log(saveReq);
+          if (saveReq.status !== undefined && saveReq.status === 200) {
+            // console.log('success');
+            setSubmissionOutcome({ msg: ['Your request was sent.'], css: 'successMsg' });
+          } else {
+            setSubmissionOutcome({ msg: ['An error occured and your request was not saved. Try again some other time.'], css: 'errorMsg' });
+          }
+          clearFormInputs();
         }
+      } else {
         setSubmissionOutcome({ msg: ['Unfortunately there is no available collections for your location. Please try again in 7 days.'], css: 'successMsg' });
 
         clearFormInputs();
-        return;
       }
-      setSubmissionOutcome({ msg: ['Your request was sent.'], css: 'successMsg' });
-
-      saveInLocalStorage(collectionRequest);
-      clearFormInputs();
-    }
+    } // if no validaton errors END
   };
   // this must be passed to FormDates component!!!
-  const confirmDate = (e, approvedDate) => {
+  const confirmDate = async (e, approvedDate, approvedKey) => {
     e.preventDefault();
     if (approvedDate.length > 0) {
-      // add date to request
-      const request = collectionRequest;
-      request.assignedDate = approvedDate;
-      console.log(request);
-      // save request in the db
-      saveInLocalStorage(request);
-      setSubmissionOutcome({ msg: [`Your collection is going to be on ${approvedDate}`], css: 'successMsg' });
+      // get params for api call
+      const refNo = collectionDatesAndRefs.arrRefNos[approvedKey];
+      const saveUrl = `https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/collect-confirm?refNo=${refNo}`;
+      const objBody = collectionRequest;
+      // console.log(objBody);
 
+      // save request in the db
+      const saveReq = await makePostCall(saveUrl, objBody);
+      // console.log(saveReq);
+      if (saveReq.status !== undefined && saveReq.status === 200) {
+        // console.log('success');
+        setSubmissionOutcome({ msg: [`Your collection is going to be on ${approvedDate}`], css: 'successMsg' });
+      } else {
+        setSubmissionOutcome({ msg: ['An error occured and your request was not saved. Try again some other time.'], css: 'errorMsg' });
+      }
       // clear request after saving
       setCollectionRequest({});
     } else {
@@ -316,7 +323,7 @@ function FormReport() {
         </div>
       </form>
       <div hidden={submissionOutcome.showDateForm ? '' : 'hidden'}>
-        <FormCollectionDates dates={collectionDates} confirmDate={confirmDate} operation="create" />
+        <FormCollectionDates dates={collectionDatesAndRefs.arrDates} confirmDate={confirmDate} operation="create" />
       </div>
     </div>
   );

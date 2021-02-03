@@ -55,5 +55,3 @@ export const makePostCall = async (url, objBody, dataOnly = true) => {
   const promise = await printReturn();
   return promise;
 };
-
-

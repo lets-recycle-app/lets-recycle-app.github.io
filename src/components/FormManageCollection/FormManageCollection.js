@@ -1,10 +1,10 @@
-/* eslint-disable */
+/* xeslint-disable */
 import React, { useState } from 'react';
 import FormCollectionDates from '../FormCollectionDates/FormCollectionDates.js';
 import getDatesForPostcode from '../FormUtils/getDateForPostcode.js';
-import { makePutCall, makePostCall } from '../AdminUtils/makeAxiosCalls.js';
+import { makePostCall, makeGetCall } from '../AdminUtils/makeAxiosCalls.js';
 
-let collectionDates = { arrDates: [], arrRefNos: [] };
+let collectionDatesAndRefs = { arrDates: [], arrRefNos: [] };
 
 function FormManageCollection() {
   const [inputRef, setInputRef] = useState({ value: '' });
@@ -39,68 +39,80 @@ function FormManageCollection() {
       setSubmissionOutcome({ msg: validation, css: 'errorMsg' });
     } else {
       // get request form the db
-      const colReq = { id: '1', ref: '1234', postcode: 'M18 7TQ' };
-      setCollectionRequest(colReq);
+      // D01R04S13T31
+      // D01R07S04T06
+      const getUrl = `https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/routes?refNo=${inputRef.value}`;
+      const request = await makeGetCall(getUrl);
+      // console.log('GET request =', request);
+      if (request.result !== undefined && request.result.length > 0) {
+        const colReq = request.result[0];
+        setCollectionRequest(colReq);
+        // console.log('req = ', colReq);
 
-      // if request not found
-      if (inputRef.value !== colReq.ref) {
-        setSubmissionOutcome({ msg: ['No request with provided Ref Number was found.'], css: 'errorMsg' });
+        if (inputActionType.value === 'editDate') {
+          // get the dates
+          collectionDatesAndRefs = await getDatesForPostcode(colReq.addressPostcode);
+          // console.log('colDates in form file = ', collectionDatesAndRefs.arrDates);
+          // show form if dates not empty
+          if (collectionDatesAndRefs.arrDates !== undefined && collectionDatesAndRefs.arrDates.length > 0) {
+            setSubmissionOutcome({ msg: [], css: '', showDateForm: true });
 
-        return;
-      }
-      if (inputActionType.value === 'editDate') {
-        // get the dates
-        collectionDates = await getDatesForPostcode(colReq.postcode);
-        // console.log('colDates in form file = ', collectionDates.arrDates);
-        // show form if dates not empty
-        if (collectionDates.arrDates.length > 0) {
-          setSubmissionOutcome({ msg: [], css: '', showDateForm: true });
+            clearFormInputs();
+            return;
+          }
+          setSubmissionOutcome({ msg: ['Unfortunately there is no available collections for your location. Please try again in 7 days.'], css: 'successMsg' });
 
           clearFormInputs();
           return;
         }
-        setSubmissionOutcome({ msg: ['Unfortunately there is no available collections for your location. Please try again in 7 days.'], css: 'successMsg' });
+        if (inputActionType.value === 'delete') {
+          // CODE FOR DELETING REQUEST
+          const delUrl = `https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/collect-cancel?refNo=${collectionRequest.refNo}`;
 
-        clearFormInputs();
+          const delRequest = await makePostCall(delUrl);
+          console.log('del response= ', delRequest);
+          // check if there response wasn't an error
+          if (delRequest.message !== undefined && delRequest.message === 'collection cancelled') {
+            setSubmissionOutcome({ msg: ['Your collection was deleted.'], css: 'successMsg' });
+            setCollectionRequest({});
+          } else {
+            setSubmissionOutcome({ msg: ['An error occured. Collection was not deleted.'], css: 'errorMsg' });
+          }
+        }
+      } else { //  request not found
+        setSubmissionOutcome({ msg: ['No request with provided Ref Number was found.'], css: 'errorMsg' });
         return;
       }
-      if (inputActionType.value === 'delete') {
-        // CODE FOR DELETING REQUEST
-
-        setSubmissionOutcome({ msg: ['Your collection was deleted.'], css: 'successMsg' });
-      }
-
-      // saveInLocalStorage(collectionRequest);
       clearFormInputs();
     }
   };
 
   // this must be passed to FormDates component
+  // eslint-disable-next-line
   const confirmDate = async (e, approvedDate, approvedKey) => {
     e.preventDefault();
     if (approvedDate.length > 0) {
-      // add date to request
-      // const request = collectionRequest;
-      const request = {
-        locationType: 'private property',
-        customerName: 'Jane Newman',
-        customerEmail: 'aaa@aa.aa',
-        itemType: 'washer',
-        houseNo: '12',
-        street: 'Some St',
-        townAddress: 'Sometown',
-        postcode: 'sk1 2lg',
-        notes: 'lorem ipsum dolor sit amet',
-      };
-      // request.assignedDate = approvedDate;
-      console.log(request);
+      /*       // add date to request
+            const request = {
+              locationType: 'private property',
+              customerName: 'Jane Newman',
+              customerEmail: 'aaa@aa.aa',
+              itemType: 'washer',
+              houseNo: '12',
+              street: 'Some St',
+              townAddress: 'Sometown',
+              postcode: 'sk1 2lg',
+              notes: 'lorem ipsum dolor sit amet',
+            };
+            // request.assignedDate = approvedDate;
+            // console.log(request);
 
-      // save request in the db 
-      const refNo = 'D01R07S04T06';
-      const url = `https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/collect-confirm?refNo=${refNo}`;
-      const data = await makePostCall(url, request);
+            // save request in the db
+            const refNo = 'D01R07S04T06';
+            const url = `https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/collect-confirm?refNo=${refNo}`;
+            const data = await makePostCall(url, request);
 
-      console.log(data);
+            console.log(data); */
 
       // some code to save...
       setSubmissionOutcome({ msg: [`Your collection date was changed to ${approvedDate}.`], css: 'successMsg' });
@@ -125,7 +137,7 @@ function FormManageCollection() {
               type="text"
               id="inputRef"
               name="inputRef"
-              placeholder="To test, use Ref No = 1234"
+              placeholder=""
               className={inputRef.css}
               value={inputRef.value}
               onChange={(e) => setInputRef({ value: e.target.value })}
@@ -164,7 +176,7 @@ function FormManageCollection() {
         </div>
       </form>
       <div hidden={submissionOutcome.showDateForm ? '' : 'hidden'}>
-        <FormCollectionDates dates={collectionDates.arrDates} confirmDate={confirmDate} operation="update" />
+        <FormCollectionDates dates={collectionDatesAndRefs.arrDates} confirmDate={confirmDate} operation="update" />
       </div>
     </div>
   );
