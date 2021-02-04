@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import AdminMenu from '../AdminMenu/AdminMenu.js';
 import './AdminHeader.css';
 
 function AdminHeader() {
+  const location = useLocation();
+  const user = location.pathname.slice(1, 4);
+  // console.log(location.pathname);
   const [menuState, setMenuState] = useState('close');
   const showHideMenu = () => {
     if (menuState === 'close') { setMenuState('open'); }
@@ -22,7 +25,7 @@ function AdminHeader() {
         </nav>
       </header>
       <div hidden={menuState === 'open' ? '' : 'hidden'}>
-        < AdminMenu />
+        < AdminMenu user={user} />
       </div>
     </React.Fragment>
   );

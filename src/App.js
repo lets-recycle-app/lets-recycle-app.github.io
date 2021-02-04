@@ -19,7 +19,8 @@ import AdminDriversList from './components/AdminDriversList/AdminDriversList.js'
 import AdminDepotMap from './components/AdminDepotMap/AdminDepotMap.js';
 import AdminData from './components/AdminData/AdminData.js';
 import AdminPostCode from './components/AdminPostCode/AdminPostCode.js';
-import AdminCounter from './components/AdminCounter/AdminCounter.js';
+// import AdminCounter from './components/AdminCounter/AdminCounter.js';
+import AdminWelcome from './components/AdminWelcome/AdminWelcome.js';
 import TestPage from './components/FormUtils/TestPage.js';
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
           <Route path="/about">
             <Header />
             <div className="container">
-                <PageAbout />
+              <PageAbout />
               <Sidebar />
             </div>
             <Footer />
@@ -65,17 +66,17 @@ function App() {
             <div className="admin-container">
               <AdminSidebar />
               <div className="main-column">
-                <AdminData />
+                <AdminWelcome />
               </div>
             </div>
             <Footer />
           </Route>
-          <Route path="/admin/drivers-list">
+          <Route path="/admin/depots">
             <AdminHeader />
             <div className="admin-container">
               <AdminSidebar />
               <div className="main-column">
-                < AdminDriversList />
+                <AdminData />
               </div>
             </div>
             <Footer />
@@ -101,12 +102,35 @@ function App() {
             </div>
             <Footer />
           </Route>
-          <Route path="/admin/counter">
+
+          {/*           <Route path="/admin/counter">
             <AdminHeader />
             <div className="admin-container">
               <AdminSidebar />
               <div className="main-column">
                 < AdminCounter/>
+              </div>
+            </div>
+            <Footer />
+          </Route> */}
+
+          {/* driver  */}
+          <Route exact path="/driver">
+            <AdminHeader />
+            <div className="admin-container">
+              <AdminSidebar />
+              <div className="main-column">
+                <AdminWelcome />
+              </div>
+            </div>
+            <Footer />
+          </Route>
+          <Route path="/driver/list">
+            <AdminHeader />
+            <div className="admin-container">
+              <AdminSidebar />
+              <div className="main-column">
+                < AdminDriversList />
               </div>
             </div>
             <Footer />
