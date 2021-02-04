@@ -21,6 +21,7 @@ The latest beta version of the app can be viewed at:
 <br />
 <br />
 [Admin Page](https://lets-recycle-app.github.io/#/admin)
+[Driver Page](https://lets-recycle-app.github.io/#/driver)
 <br />
 <br />
 The project story map is shown below.
