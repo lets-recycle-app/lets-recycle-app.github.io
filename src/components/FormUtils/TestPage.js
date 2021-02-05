@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React, { useState, useEffect } from 'react';
-import { makePostCall } from '../AdminUtils/makeAxiosCalls';
+import { getDriverById, getAdminById, getAllData } from '../AdminUtils/makeApiCalls';
 
 function TestPage() {
   useEffect(async () => {
@@ -20,12 +20,18 @@ function TestPage() {
 
     // save request in the db
 
-    const refNo = 'D01R07S04T06';
+/*     const refNo = 'D01R07S04T06';
     const url = `https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/collect-confirm?refNo=${refNo}`;
     
     const lorem = await makePostCall(url, request);
 
-    console.log('lorem = ', lorem);
+    console.log('lorem = ', lorem); */
+
+    const driver = await getAdminById(1);
+    console.log('driver = ', driver);
+
+    const depots = await getAllData('depots');
+    console.log('depots = ', depots);
 
   }, []);
 

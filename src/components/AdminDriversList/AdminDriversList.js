@@ -16,7 +16,7 @@ const getDriversItems = async (driverId, date) => {
   const data = await makeGetCall(url);
   console.log(data);
   let myArray = [];
-  if (data.result.length > 0) {
+  if (data.result !== undefined && data.result.length > 0) {
     myArray = data.result;
   }
   return myArray;
