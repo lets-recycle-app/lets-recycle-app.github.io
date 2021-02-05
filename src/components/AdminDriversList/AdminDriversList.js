@@ -1,14 +1,10 @@
+/* xeslint-disable */
 import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import DriversListItem from '../DriversListItem/DriversListItem.js';
 import 'react-datepicker/dist/react-datepicker.css';
-import { getDriversItems } from '../AdminUtils/makeApiCalls.js';
+import { getDriversItems, getAddressById, getDepotById } from '../AdminUtils/makeApiCalls.js';
 import { formatFullDate } from '../AdminUtils/formatDate.js';
-
-const names = ['Mary Brown', 'Elizabeth Smith', 'Una Atchley', 'Wilma Tibbs', 'Pia Rucker', 'Tiny Litwin', 'Cameron Amon', 'Jarred Bartos', 'Leisha Tuthill', 'Ismael Pietsch', 'Casandra Lipsett', 'Ardella Bono', 'Saturnina Grenz', 'Amada Rees', 'Derek Sybert', 'Claudette Ruby', 'Trey Norden', 'Merlene Nygren', 'Jackson Catto', 'Breana Becker', 'Madlyn Aaronson'];
-const streets = ['Brown St', 'Red Rd', 'Oak St', 'Leafy St', 'Green St', 'White Rd', 'Grend Ave', 'Randall Close', 'Bridge St', 'Bank Lane', 'West St'];
-const locations = ['public area', 'private property'];
-// const towns = ['Oakton', 'Smallville', 'Greentown', 'Smalltown', 'Hightown', 'Lowtown', 'Northport', 'Westport', 'Eastport', 'Southport'];
 
 function AdminDriversList() {
   const now = new Date();
@@ -23,38 +19,30 @@ function AdminDriversList() {
     const arrItemsAddress = [];
     // eslint-disable-next-line
     for (const item of drItems) {
-      let name = '';
-      let locationType = '';
-      let email = '';
-      let street = streets[Math.floor(Math.random() * streets.length)];
-      let houseNo = Math.floor(Math.random() * 100);
-      if (item.routeAction === 'depot') {
-        street = 'Depot';
-        houseNo = 'AO';
-        locationType = 'depot';
-      } else {
-        locationType = locations[Math.floor(Math.random() * locations.length)];
-        if (locationType === 'private property') {
-          name = names[Math.floor(Math.random() * names.length)];
-          email = 'aaa@aa.aa';
-        }
-      }
-      // let town = towns[Math.floor(Math.random() * towns.length)];
-
+      // eslint-disable-next-line
+      const address = await getAddressById(item.addressId);
       const objItem = {
         refNo: item.refNo,
-        name,
-        email,
-        houseNo,
-        street,
-        town: 'Greentown',
+        name: address.customerName,
+        email: address.customerEmail,
+        houseNo: address.houseNo,
+        street: address.street,
+        town: address.townAddress,
         addressPostcode: item.addressPostcode,
         status: item.status,
         routeAction: item.routeAction,
         appliance: item.itemType,
-        locationType,
-        notes: item.notes,
+        locationType: address.locationType,
+        notes: address.notes,
       };
+      if (item.itemType === 'depot') {
+        // eslint-disable-next-line
+        const depot = await getDepotById(item.depotId);
+        // console.log(depot);
+        objItem.houseNo = 'AO';
+        objItem.street = 'Depot';
+        objItem.town = depot.depotName;
+      }
       arrItemsAddress.push(objItem);
     }
     setDriversItems(arrItemsAddress);

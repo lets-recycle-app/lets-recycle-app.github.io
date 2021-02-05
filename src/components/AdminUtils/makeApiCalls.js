@@ -56,10 +56,15 @@ export const getAddressById = async (addressId) => {
   return objAddress;
 }
 
+export const getDepotById = async (depotId) => {
+  const objDepot = getDataByField('depots', 'depotId', depotId);
+  return objDepot;
+}
+
 export const getDriversItems = async (driverId, date) => {
   const url = `https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/routes?driverId=${driverId}&routeDate=${date}`;
   const data = await makeGetCall(url);
-  console.log(data);
+  // console.log(data);
   let myArray = [];
   if (data.result !== undefined && data.result.length > 0) {
     myArray = data.result;
