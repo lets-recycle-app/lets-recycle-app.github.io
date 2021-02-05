@@ -21,6 +21,8 @@ import AdminData from './components/AdminData/AdminData.js';
 import AdminPostCode from './components/AdminPostCode/AdminPostCode.js';
 // import AdminCounter from './components/AdminCounter/AdminCounter.js';
 import AdminWelcome from './components/AdminWelcome/AdminWelcome.js';
+import AdminDrivers from './components/AdminDrivers/AdminDrivers.js';
+import AdminUsers from './components/AdminUsers/AdminUsers.js';
 import TestPage from './components/FormUtils/TestPage.js';
 
 function App() {
@@ -91,7 +93,26 @@ function App() {
             </div>
             <Footer />
           </Route>
-
+          <Route path="/admin/drivers">
+            <AdminHeader />
+            <div className="admin-container">
+              <AdminSidebar />
+              <div className="main-column">
+                <AdminDrivers />
+              </div>
+            </div>
+            <Footer />
+          </Route>
+          <Route path="/admin/users">
+            <AdminHeader />
+            <div className="admin-container">
+              <AdminSidebar />
+              <div className="main-column">
+                <AdminUsers />
+              </div>
+            </div>
+            <Footer />
+          </Route>
           <Route path="/admin/postcode">
             <AdminHeader />
             <div className="admin-container">

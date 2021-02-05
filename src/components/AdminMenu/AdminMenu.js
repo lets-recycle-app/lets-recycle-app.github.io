@@ -16,7 +16,16 @@ function AdminMenu(props) {
           <NavLink to="/admin/map">Depot Map</NavLink>
         </li>
         <li className="admin-menu-item">
+          <NavLink to="/admin/depots">Depots</NavLink>
+        </li>
+        <li className="admin-menu-item">
+          <NavLink to="/admin/drivers">Drivers</NavLink>
+        </li>
+        <li className="admin-menu-item">
           <NavLink to="/admin/postcode">PostCodes</NavLink>
+        </li>
+        <li className="admin-menu-item">
+          <NavLink to="/admin/users">Users</NavLink>
         </li>
         {/*         <li className="admin-menu-item">
 <NavLink to="/admin/counter">Test Counter</NavLink>

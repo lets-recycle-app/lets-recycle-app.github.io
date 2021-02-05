@@ -2,25 +2,13 @@ import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import DriversListItem from '../DriversListItem/DriversListItem.js';
 import 'react-datepicker/dist/react-datepicker.css';
-import { makeGetCall } from '../AdminUtils/makeAxiosCalls.js';
+import { getDriversItems } from '../AdminUtils/makeApiCalls.js';
 import { formatFullDate } from '../AdminUtils/formatDate.js';
 
 const names = ['Mary Brown', 'Elizabeth Smith', 'Una Atchley', 'Wilma Tibbs', 'Pia Rucker', 'Tiny Litwin', 'Cameron Amon', 'Jarred Bartos', 'Leisha Tuthill', 'Ismael Pietsch', 'Casandra Lipsett', 'Ardella Bono', 'Saturnina Grenz', 'Amada Rees', 'Derek Sybert', 'Claudette Ruby', 'Trey Norden', 'Merlene Nygren', 'Jackson Catto', 'Breana Becker', 'Madlyn Aaronson'];
 const streets = ['Brown St', 'Red Rd', 'Oak St', 'Leafy St', 'Green St', 'White Rd', 'Grend Ave', 'Randall Close', 'Bridge St', 'Bank Lane', 'West St'];
 const locations = ['public area', 'private property'];
 // const towns = ['Oakton', 'Smallville', 'Greentown', 'Smalltown', 'Hightown', 'Lowtown', 'Northport', 'Westport', 'Eastport', 'Southport'];
-
-// eslint-disable-next-line
-const getDriversItems = async (driverId, date) => {
-  const url = `https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/routes?driverId=${driverId}&routeDate=${date}`;
-  const data = await makeGetCall(url);
-  console.log(data);
-  let myArray = [];
-  if (data.result !== undefined && data.result.length > 0) {
-    myArray = data.result;
-  }
-  return myArray;
-};
 
 function AdminDriversList() {
   const now = new Date();
