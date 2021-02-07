@@ -1,65 +1,52 @@
 import './AdminDepotMap.css';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Map from 'devextreme-react/map';
+import Select from 'react-select';
+import axios from 'axios';
+
+const options = [
+  { value: 1, label: 'Horwich' },
+  { value: 2, label: 'Manchester' },
+  { value: 3, label: 'Leeds' },
+];
+
+const apiUrl = 'https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/route-map';
+
+const depotId = 1;
+const driverId = 3;
+const dayNo = 1;
 
 const AdminDepotMap = () => {
   const BING_KEY = `${process.env.REACT_APP_BING_API}`;
+  const [geo, setGeo] = useState([]);
 
-  const routesData = [{
-    weight: 0.5,
-    color: 'blue',
-    opacity: 1,
-    mode: 'driving',
-    locations: [
-      [53.391139000000000, -3.067504000000000],
-      [53.391535103505300, -3.066025692571600],
-      [53.390091033141000, -3.084635511553780],
-      [53.390450000000000, -3.061096000000000],
-      [53.388854000000000, -3.059628000000000],
-      [53.390031000000000, -3.058588000000000],
-      [53.392692000000000, -3.084654000000000],
-      [53.396637000000000, -3.083837000000000],
-      [53.392981000000000, -3.084496000000000],
-      [53.397496000000000, -3.079317000000000],
-      [53.367750000000000, -3.046028000000000],
-      'Oxton',
-    ],
-  },
-  {
-    weight: 6,
-    color: 'red',
-    opacity: 0.5,
-    mode: 'walking',
-    locations: [
-      [53.391139000000000, -3.067504000000000],
-      [53.391535103505300, -3.066025692571600],
-      [53.390091033141000, -3.084635511553780],
-      [53.390450000000000, -3.061096000000000],
-      [53.388854000000000, -3.059628000000000],
-      [53.390031000000000, -3.058588000000000],
-      [53.392692000000000, -3.084654000000000],
-      [53.396637000000000, -3.083837000000000],
-      [53.392981000000000, -3.084496000000000],
-      [53.397496000000000, -3.079317000000000],
-      [53.367750000000000, -3.046028000000000],
-      'Oxton',
-    ],
-  },
-  ];
+  useEffect(() => {
+    const fetchGeo = async () => {
+      const routeApi = `${apiUrl}?depotId = ${depotId} & dayNo = ${dayNo} & driverId = ${driverId}`;
+
+      const apiData = await axios(
+        routeApi,
+      );
+
+      setGeo(apiData.data.result, []);
+    };
+    fetchGeo();
+  }, []);
 
   return (
-    <div>
+      <div className="Container">
+        <Select options={options} />
       <Map
-        defaultCenter={['Prenton', 'Prenton', 'CH43 8TJ']}
         defaultZoom={14}
+        autoAdjust={true}
+        defaultCenter={['Manchester']}
         apiKey={BING_KEY}
-        height={500}
+        height={600}
         width="100%"
         provider="bing"
-        routes={routesData}
-        // type = "roadmap" || "satellite" || "hybrid"
+        routes={geo}
+        // markers={markersData}
         type="roadmap" >
-
       </Map>
     </div>
   );

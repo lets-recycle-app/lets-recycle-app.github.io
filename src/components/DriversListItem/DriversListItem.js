@@ -4,12 +4,13 @@ import './DriversListItem.css';
 function DriversListItem(props) {
   return (
         <div className="drivers-list-item">
-          <div className= {props.routeAction === 'collection' ? 'box-head green' : 'box-head blue'} >
+          <div className= {props.routeAction === 'collection' ? 'box-head green' : 'box-head dark'} >
 {/*             <span className="tick-box-icon">{props.completed ? '\u2611' : '\u2610'}</span> */}
-            {props.houseNo} {props.street}, {props.town}, {props.postcode}
+            {props.distance} {props.houseNo} {props.street}, {props.town}, {props.postcode}
           </div>
           <div className="box-body">
             Reference no: {props.refNo}
+            <br/>Distance : {props.distance}
             { props.name !== '' ? <br/> : '' }
             { props.name !== '' ? `Name: ${props.name}` : '' }
             { props.email !== '' ? <br/> : ''}

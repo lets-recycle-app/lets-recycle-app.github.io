@@ -24,6 +24,10 @@ body {
 .main-column, .side-column {
   flex-basis : 0;
   padding: 15px;
+  font-family: "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+  font-weight: 400;
 }
 .admin-container .side-column {
   border:0;
@@ -38,6 +42,18 @@ body {
 }
 .App {
   background-color: var(--theme-background-color);
+  font-family: "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  sans-serif;
+  color: #282b28;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 550;
+}
+
+strong {
+  font-weight: 550;
 }
 
 /* Media queries */
@@ -59,28 +75,28 @@ body {
   .admin-container {
     max-width: 100%;
     margin: 0 auto;
-  }  
+  }
   .main-column {
     flex-grow: 2;
   }
   .side-column {
     flex-grow: 1;
-  }  
+  }
 }
 @media (min-width: 801px) {
   .container {
     max-width: 800px;
     margin: 0 auto;
-  } 
+  }
   .main-column {
     flex-grow: 3;
   }
   .side-column {
     flex-grow: 1;
-  } 
+  }
 }
 @media (min-width: 601px) {
   .mobile-visible {
     display: none;
-  } 
+  }
 }

@@ -8,12 +8,13 @@ import { isPostCodeValid } from '../AdminUtils/routeUtils.js';
 import { makePostCall } from '../AdminUtils/makeAxiosCalls.js';
 
 const appliances = [
-  { id: 'Big Fridge', weighting: '1.0' },
+  { id: 'Fridge', weighting: '1.0' },
   { id: 'Freezer', weighting: '1.0' },
   { id: 'Washer', weighting: '1.0' },
-  { id: 'Small Fridge', weighting: '0.5' },
   { id: 'Dryer', weighting: '0.5' },
   { id: 'Oven', weighting: '0.5' },
+  { id: 'Cooker', weighting: '0.5' },
+  { id: 'Dishwasher', weighting: '1.0' },
 ];
 let collectionDatesAndRefs = { arrDates: [], arrRefNos: [] };
 function FormReport() {
@@ -182,7 +183,6 @@ function FormReport() {
   return (
     <div>
       <form onSubmit={submitForm} hidden={!submissionOutcome.showDateForm ? '' : 'hidden'} >
-        <p><strong>Fill in the form to request collection of a scrap appliance.</strong></p>
         <div className={submissionOutcome.css}>
           {submissionOutcome.msg.map((line, i) => <span key={i}>{line}</span>)}
         </div>
