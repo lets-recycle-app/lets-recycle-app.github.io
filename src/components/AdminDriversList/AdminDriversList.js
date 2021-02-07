@@ -23,6 +23,7 @@ function AdminDriversList() {
       const address = await getAddressById(item.addressId);
       const objItem = {
         refNo: item.refNo,
+        distance: item.distance,
         name: address.customerName,
         email: address.customerEmail,
         houseNo: address.houseNo,
@@ -58,7 +59,7 @@ function AdminDriversList() {
 
   return (
     <div className="main-column">
-      <h1>Your {formatFullDate(now) === formatedDate ? `todays (${formatedDate})` : `${formatedDate}`} route is listed below.</h1>
+      <h1>Your route for date {formatFullDate(now) === formatedDate ? `${formatedDate}` : `${formatedDate}`}</h1>
       <form onSubmit={handleForm} >
         <div className="form-row">
           <label htmlFor="id">Select another date:</label>

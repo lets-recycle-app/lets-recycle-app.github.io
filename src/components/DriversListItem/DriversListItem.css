@@ -18,8 +18,12 @@
 .drivers-list-item .green {
     background-color: var(--theme-color);
 }
-.drivers-list-item .blue {
-    background-color: #58e2ec;
+.drivers-list-item .dark {
+    font-weight: 10;
+    font-size: 16px;
+    letter-spacing: 2px;
+    background-color: #444b4b;
+    color: #e5f1e2;
 }
 .drivers-list-item .triangle {
     font-size: 20px;

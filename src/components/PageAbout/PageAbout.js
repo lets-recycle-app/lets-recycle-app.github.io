@@ -1,12 +1,13 @@
 import React from 'react';
 
 const appliances = [
-  { id: 'Big Fridge', weighting: '1.0' },
+  { id: 'Fridge', weighting: '1.0' },
   { id: 'Freezer', weighting: '1.0' },
   { id: 'Washer', weighting: '1.0' },
-  { id: 'Small Fridge', weighting: '0.5' },
   { id: 'Dryer', weighting: '0.5' },
   { id: 'Oven', weighting: '0.5' },
+  { id: 'Cooker', weighting: '0.5' },
+  { id: 'Dishwasher', weighting: '1.0' },
 ];
 function PageAbout() {
   return (

@@ -5,9 +5,13 @@ import FormReport from '../FormReport/FormReport.js';
 function PageContentLanding() {
   return (
     <div className="main-column">
-      <h1>Report old house appliance</h1>
-      <p>We recycle old house appliances. Let us know if you have one at home or spotted one dumped in public area.</p>
-      <Link to="/about">Learn more...</Link>
+      <h1>AO Appliance Recycling</h1>
+      <h2>
+      <p>We recycle appliances that are no longer needed
+        or that have been left abandoned in a public area. </p>
+    <p>Please fill in a request below and let us pick the appliance
+      and recycle it.</p></h2>
+      <Link to="/about"><h2>Learn more about AO green initiatives ...</h2></Link>
       <FormReport />
     </div>
   );
