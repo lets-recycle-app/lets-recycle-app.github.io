@@ -58,13 +58,8 @@ function AdminDriversList() {
   };
 
   return (
-<<<<<<< HEAD
     <div>
       <h2>Your {formatFullDate(now) === formatedDate ? `todays (${formatedDate})` : `${formatedDate}`} route is listed below.</h2>
-=======
-    <div className="main-column">
-      <h1>Your route for date {formatFullDate(now) === formatedDate ? `${formatedDate}` : `${formatedDate}`}</h1>
->>>>>>> a32cbcedd9271cae50df5a417cba3f776c2e8b68
       <form onSubmit={handleForm} >
         <div className="form-row">
           <label htmlFor="id">Select another date:</label>
