@@ -41,6 +41,9 @@ function AdminMenu(props) {
         <li className="admin-menu-item">
           <NavLink to="/driver/list">Driver&apos;s list</NavLink>
         </li>
+        <li className="admin-menu-item">
+          <NavLink to="/driver/map">Driver&apos;s Map</NavLink>
+        </li>
       </ul>
     </div>
   );

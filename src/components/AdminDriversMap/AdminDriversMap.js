@@ -1,12 +1,13 @@
-/* xeslint-disable */
+/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
-import DriversListItem from '../DriversListItem/DriversListItem.js';
+import '../AdminDepotMap/AdminDepotMap.css';
 import 'react-datepicker/dist/react-datepicker.css';
-import { getDriversItems, getAddressById, getDepotById } from '../AdminUtils/makeApiCalls.js';
+import Map from 'devextreme-react/map';
 import { formatFullDate } from '../AdminUtils/formatDate.js';
+import { getDriversItems, getAddressById, getDepotById } from '../AdminUtils/makeApiCalls.js';
 
-function AdminDriversList() {
+function AdminDriversMap() {
   const now = new Date();
   const [startDate, setStartDate] = useState(now);
   const [formatedDate, setFormatedDate] = useState(formatFullDate(now));
@@ -56,9 +57,54 @@ function AdminDriversList() {
     setDbDate(formatFullDate(startDate, 'db'));
   };
 
+
+  const BING_KEY = `${process.env.REACT_APP_BING_API}`;
+
+  const routesData = [{
+    weight: 0.5,
+    color: 'blue',
+    opacity: 1,
+    mode: 'driving',
+    locations: [
+      [53.391139000000000, -3.067504000000000],
+      [53.391535103505300, -3.066025692571600],
+      [53.390091033141000, -3.084635511553780],
+      [53.390450000000000, -3.061096000000000],
+      [53.388854000000000, -3.059628000000000],
+      [53.390031000000000, -3.058588000000000],
+      [53.392692000000000, -3.084654000000000],
+      [53.396637000000000, -3.083837000000000],
+      [53.392981000000000, -3.084496000000000],
+      [53.397496000000000, -3.079317000000000],
+      [53.367750000000000, -3.046028000000000],
+      'Oxton',
+    ],
+  },
+  {
+    weight: 6,
+    color: 'red',
+    opacity: 0.5,
+    mode: 'walking',
+    locations: [
+      [53.391139000000000, -3.067504000000000],
+      [53.391535103505300, -3.066025692571600],
+      [53.390091033141000, -3.084635511553780],
+      [53.390450000000000, -3.061096000000000],
+      [53.388854000000000, -3.059628000000000],
+      [53.390031000000000, -3.058588000000000],
+      [53.392692000000000, -3.084654000000000],
+      [53.396637000000000, -3.083837000000000],
+      [53.392981000000000, -3.084496000000000],
+      [53.397496000000000, -3.079317000000000],
+      [53.367750000000000, -3.046028000000000],
+      'Oxton',
+    ],
+  },
+  ];
+
   return (
     <div>
-      <h2>Your {formatFullDate(now) === formatedDate ? `todays (${formatedDate})` : `${formatedDate}`} route is listed below.</h2>
+      <h2>Your {formatFullDate(now) === formatedDate ? `todays (${formatedDate})` : `${formatedDate}`} route is shown below.</h2>
       <form onSubmit={handleForm} >
         <div className="form-row">
           <label htmlFor="id">Select another date:</label>
@@ -74,24 +120,20 @@ function AdminDriversList() {
           <button type="submit">Confirm</button>
         </div>
       </form>
-      {driversItems.length === 0 ? 'No items found for this date.' : ''}
-      { driversItems.map((item, n) => <DriversListItem
-        key={n}
-        refNo={item.refNo}
-        name={item.name}
-        email={item.email}
-        houseNo={item.houseNo}
-        street={item.street}
-        town={item.town}
-        postcode={item.addressPostcode}
-        status={item.status}
-        routeAction={item.routeAction}
-        appliance={item.appliance}
-        locationType={item.locationType}
-        notes={item.notes}
-      />)}
+      <Map
+        defaultCenter={['Prenton', 'Prenton', 'CH43 8TJ']}
+        defaultZoom={14}
+        apiKey={BING_KEY}
+        height={500}
+        width="100%"
+        provider="bing"
+        routes={routesData}
+        // type = "roadmap" || "satellite" || "hybrid"
+        type="roadmap" >
+
+      </Map>
     </div>
   );
 }
 
-export default AdminDriversList;
+export default AdminDriversMap;
