@@ -1,6 +1,7 @@
 /* header */
 header {
     background-color: var(--theme-color);
+    font-size: larger;
 }
 
 /* menu */
