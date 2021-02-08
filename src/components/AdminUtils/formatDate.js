@@ -30,3 +30,14 @@ export const formatDbDate = (dbDate) => {
 
   return `${day}-${month}-${year}`;
 };
+
+/**
+ * this accepts javascript date object and returns number of full days between it and now
+ * @param {date obj} objDate - javascript date object
+ */
+export const formatNumberDate = (objDate) => {
+  const now = new Date();
+  const msDay = 60*60*24*1000;
+  const fullDaysBetween = Math.ceil((objDate - now) / msDay);
+  return fullDaysBetween;
+};
