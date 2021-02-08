@@ -50,7 +50,7 @@ const AdminDepotMap = () => {
   return (
     <div className="Container">
       <h2>Routes</h2>
-      <form onSubmit={handleForm} >
+      <form onSubmit={handleForm} className="mapForm">
         <div className="form-row">
           <label htmlFor="idDepot">Depot:</label>
           <div className="datePickerWrap">

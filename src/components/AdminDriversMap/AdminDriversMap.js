@@ -34,7 +34,7 @@ function AdminDriversMap() {
   return (
     <div>
       <h2>Your {formatFullDate(now) === formatedDate ? `todays (${formatedDate})` : `${formatedDate}`} route is shown below.</h2>
-      <form onSubmit={handleForm} >
+      <form onSubmit={handleForm}>
         <div className="form-row">
           <label htmlFor="id">Select another date:</label>
           <div className="datePickerWrap">

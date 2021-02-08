@@ -1,0 +1,10 @@
+@media (max-width: 700px){
+  .mapForm .form-row > div.datePickerWrap {
+    display: inline-block;
+    width: 70%;
+  } 
+  .mapForm .form-row > label {
+    display: inline-block;
+    width: 30%;
+  }
+}
