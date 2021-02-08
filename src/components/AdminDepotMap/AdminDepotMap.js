@@ -1,13 +1,11 @@
+/* xeslint-disable */
 import './AdminDepotMap.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import Map from 'devextreme-react/map';
-import axios from 'axios';
 import { formatNumberDate } from '../AdminUtils/formatDate.js';
-import { getAllData, getDataByField } from '../AdminUtils/makeApiCalls.js';
-
-const apiUrl = 'https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/route-map';
+import { getAllData, getDataByField, getGeo } from '../AdminUtils/makeApiCalls.js';
 
 const AdminDepotMap = () => {
   const BING_KEY = `${process.env.REACT_APP_BING_API}`;
@@ -36,14 +34,9 @@ const AdminDepotMap = () => {
     setDrivers(respDrivers);
 
     // get coords
-    const fetchGeo = async () => {
-      const routeApi = `${apiUrl}?depotId = ${depotId} & dayNo = ${dayNo} & driverId = ${driverId}`;
-
-      const apiData = await axios(routeApi);
-
-      setGeo(apiData.data.result, []);
-    };
-    fetchGeo();
+    const fetchGeo = await getGeo(depotId, dayNo, driverId);
+    setGeo(fetchGeo, []);
+    // fetchGeo();
   }, [loading]);
 
   const handleForm = (e) => {
@@ -51,6 +44,7 @@ const AdminDepotMap = () => {
     setLoading(loading + 1); // this triggers async useEffect
     setDayNo(formatNumberDate(startDate));
     setDepotId(depotId);
+    setDriverId(driverId);
   };
 
   return (

@@ -71,3 +71,17 @@ export const getDriversItems = async (driverId, date) => {
   }
   return myArray;
 };
+
+export const getGeo = async (depotId = 1, dayNo = 0, driverId = 0) => {
+  const apiUrl = 'https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/route-map';
+
+  const routeApi = `${apiUrl}?depotId = ${depotId} & dayNo = ${dayNo} & driverId = ${driverId}`;
+
+  const data = await makeGetCall(routeApi);
+
+  let myArray = [];
+  if (data.result !== undefined && data.result.length > 0) {
+    myArray = data.result;
+  }
+  return myArray;
+};
