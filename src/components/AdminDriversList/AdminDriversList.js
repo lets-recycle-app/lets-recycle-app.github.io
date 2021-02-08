@@ -90,6 +90,7 @@ function AdminDriversList() {
         appliance={item.appliance}
         locationType={item.locationType}
         notes={item.notes}
+        distance={item.distance}
       />)}
     </div>
   );
