@@ -79,6 +79,7 @@ function AdminDriversList() {
       { driversItems.map((item, n) => <DriversListItem
         key={n}
         refNo={item.refNo}
+        distance={item.distance}
         name={item.name}
         email={item.email}
         houseNo={item.houseNo}

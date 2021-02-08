@@ -9,7 +9,7 @@ function DriversListItem(props) {
           </div>
           <div className="box-body">
             Reference no: {props.refNo}
-            <br/>Distance : {props.distance}
+            <br/>Distance : {props.distance} km
             { props.name !== '' && props.name !== undefined ? <br/> : '' }
             { props.name !== '' && props.name !== undefined ? `Name: ${props.name}` : '' }
             { props.email !== '' && props.email !== undefined ? <br/> : ''}
