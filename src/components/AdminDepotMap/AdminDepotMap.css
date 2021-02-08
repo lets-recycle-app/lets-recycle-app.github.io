@@ -1,3 +1,16 @@
+.driversMapForm .form-row > label {
+  display: inline-block;
+  width: auto;
+  margin: 0 20px 0 0;
+}
+.driversMapForm .form-row > div {
+  display: inline-block;
+  width: auto;
+  margin: 0 20px 0 0;
+}
+.driversMapForm .form-row button {
+  margin: 5px 0 10px 0;
+}
 @media (max-width: 700px){
   .mapForm .form-row > div.datePickerWrap {
     display: inline-block;
@@ -7,4 +20,15 @@
     display: inline-block;
     width: 30%;
   }
+
+}
+
+@media (min-width: 701px){
+  .mapForm .form-row > div.datePickerWrap {
+    width: 90%;
+  } 
+  .mapForm .form-row > label {
+    width: 8%;
+  }
+
 }
