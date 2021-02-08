@@ -1,4 +1,3 @@
-/* xeslint-disable */
 import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import DriversListItem from '../DriversListItem/DriversListItem.js';
