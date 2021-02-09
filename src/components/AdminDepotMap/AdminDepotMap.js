@@ -38,7 +38,6 @@ const AdminDepotMap = () => {
 
   useEffect(async () => {
     // This is be executed when `loading` state changes
-    // console.log('depotId=', depotId);
     // get drivers for selected depot
     const respDrivers = await getDataByField('drivers', 'depotId', depotId);
     setDrivers(respDrivers);
@@ -100,14 +99,12 @@ const AdminDepotMap = () => {
               onChange={date => setStartDate(date)} // eslint-disable-line
               dateFormat="dd-MM-yyyy"
             />
+            <button type="submit">Confirm</button>
           </div>
-        </div>
-        <div className="form-row">
-          <button type="submit">Confirm</button>
         </div>
       </form>
       <Map
-        defaultZoom={14}
+        defaultZoom={23}
         autoAdjust={true}
         defaultCenter={['Manchester']}
         apiKey={BING_KEY}
