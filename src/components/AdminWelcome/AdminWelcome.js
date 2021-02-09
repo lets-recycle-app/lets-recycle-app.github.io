@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { getDriverById, getAdminById } from '../AdminUtils/makeApiCalls.js';
+import { getDriverById, getAdminById, driverSelectId } from '../AdminUtils/makeApiCalls.js';
 
 function AdminWelcome() {
   const location = useLocation();
@@ -9,7 +9,7 @@ function AdminWelcome() {
   const [objDriver, setObjDriver] = useState({});
   useEffect(async () => {
     const respAdm = await getAdminById(1);
-    const respDri = await getDriverById(1);
+    const respDri = await getDriverById(driverSelectId);
     setObjAdmin(respAdm);
     setObjDriver(respDri);
   }, []);
@@ -28,7 +28,8 @@ function AdminWelcome() {
         } else if (user === 'dri') {
           return (
             <div>
-              <h2>Welcome, {objDriver.driverName}.</h2>
+              <h3>Name: {objDriver.driverName} </h3>
+              <h3>Driver Id: {objDriver.driverId}.</h3>
             Your permission level is Driver.
               <br />
             </div>

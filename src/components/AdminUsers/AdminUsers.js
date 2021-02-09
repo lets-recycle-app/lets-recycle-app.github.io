@@ -18,7 +18,7 @@ function AdminUsers() {
       {(() => {
         if (users.length === 0) {
           return (
-            <p>No recors found.</p>
+            <p>No records found.</p>
           );
           // eslint-disable-next-line
         } else {

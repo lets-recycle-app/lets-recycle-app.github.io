@@ -155,7 +155,6 @@ function App() {
                 < AdminDriversList />
               </div>
             </div>
-            <Footer />
           </Route>
           <Route path="/driver/map">
             <AdminHeader />
