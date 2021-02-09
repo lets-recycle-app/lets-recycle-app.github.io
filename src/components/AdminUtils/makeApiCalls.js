@@ -113,7 +113,7 @@ export const getMarker = async (depotId = 1, dayNo = 0, driverId = 0) => {
   return markerArray;
 };
 
-export const driverSelectId =107;
+export const driverSelectId =91;
 
 export const getDriver = async (driverId = 1) => {
   const apiUrl = 'https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/drivers';

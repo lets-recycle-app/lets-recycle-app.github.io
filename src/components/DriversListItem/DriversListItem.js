@@ -4,8 +4,8 @@ import './DriversListItem.css';
 function DriversListItem(props) {
   return (
         <div className="drivers-list-item">
-          <div className= {props.routeAction === 'collection' ? 'box-head green' : 'box-head dark'} >
-            {props.routeAction !== 'depot' ? `${props.routeAction}:  ${props.appliance}` : props.routeAction}
+          <div className= {props.routeAction === 'recycle' ? 'box-head green' : 'box-head dark'} >
+            {props.routeAction !== 'depot' ? `${props.routeAction}:  ${props.appliance},  ${props.postcode}, ${props.distance} km` : `${props.routeAction}, ${props.postcode}` }
           </div>
           <div className="box-body">
 

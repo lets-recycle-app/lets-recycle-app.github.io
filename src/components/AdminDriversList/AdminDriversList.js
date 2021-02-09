@@ -18,6 +18,7 @@ function AdminDriversList() {
   useEffect(async () => {
     const driverResponse = await getDriver(driverSelectId);
     setDriver(driverResponse[0], []);
+    setDriversItems([]);
 
     // This is be executed when `loading` state changes
     const drItems = await getDriversItems(driverSelectId, dbDate);
@@ -66,7 +67,7 @@ function AdminDriversList() {
   return (
     <div>
       <h2> Daily Route Schedule {formatFullDate(now) === formatedDate ? `${formatedDate}` : `${formatedDate}`}</h2>
-      <h3>Driver: {driver.driverName}, {driver.driverId} Depot</h3>
+      <h3>Driver: {driver.driverName}, Id: {driver.driverId}</h3>
 
       <form onSubmit={handleForm} >
         <div className="form-row">
@@ -78,8 +79,8 @@ function AdminDriversList() {
               onChange={date => setStartDate(date)} // eslint-disable-line
               dateFormat="dd-MM-yyyy"
             />
+            <button type="submit">Confirm</button>
           </div>
-          <button type="submit">Confirm</button>
         </div>
       </form>
       {driversItems.length === 0 ? 'No items found for this date.' : ''}

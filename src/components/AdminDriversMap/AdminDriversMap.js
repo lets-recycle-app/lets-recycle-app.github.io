@@ -9,12 +9,6 @@ import { formatFullDate, formatNumberDate } from '../AdminUtils/formatDate.js';
 import {
   driverSelectId, getDriver, getGeo, getMarker,
 } from '../AdminUtils/makeApiCalls.js';
-// eslint-disable-next-line no-unused-vars
-import recMarker from '../../images/recMarker.png';
-// eslint-disable-next-line no-unused-vars
-import delMarker from '../../images/delMarker.png';
-// eslint-disable-next-line no-unused-vars
-import depMarker from '../../images/depMarker.png';
 
 function AdminDriversMap() {
   const BING_KEY = `${process.env.REACT_APP_BING_API}`;
@@ -52,7 +46,7 @@ function AdminDriversMap() {
   return (
     <div>
       <h2>Daily Route Map {formatFullDate(now) === formatedDate ? `${formatedDate}` : `${formatedDate}`}</h2>
-      <h3>Driver: {driver.driverName}, {driver.driverId} Depot</h3>
+      <h3>Driver: {driver.driverName}, Id: {driver.driverId}</h3>
       <form onSubmit={handleForm} className="driversMapForm">
         <div className="form-row">
           <label htmlFor="id">Select another date:</label>
