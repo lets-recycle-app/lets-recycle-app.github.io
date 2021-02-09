@@ -67,6 +67,9 @@ strong {
   .mobile-hidden {
     display: none;
   }
+  .main-column, .side-column {
+    flex-basis : auto;
+  }
 }
 @media (min-width: 600px) and (max-width: 800px){
   .container {
