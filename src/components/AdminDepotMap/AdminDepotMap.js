@@ -5,7 +5,16 @@ import React, { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import Map from 'devextreme-react/map';
 import { formatNumberDate } from '../AdminUtils/formatDate.js';
-import { getAllData, getDataByField, getGeo } from '../AdminUtils/makeApiCalls.js';
+import {
+  getAllData, getDataByField, getGeo, getMarker,
+} from '../AdminUtils/makeApiCalls.js';
+
+// eslint-disable-next-line no-unused-vars
+import recMarker from '../../images/recMarker.png';
+// eslint-disable-next-line no-unused-vars
+import delMarker from '../../images/delMarker.png';
+// eslint-disable-next-line no-unused-vars
+import depMarker from '../../images/depMarker.png';
 
 const AdminDepotMap = () => {
   const BING_KEY = `${process.env.REACT_APP_BING_API}`;
@@ -13,6 +22,7 @@ const AdminDepotMap = () => {
   const [startDate, setStartDate] = useState(now);
   const [dayNo, setDayNo] = useState(formatNumberDate(startDate));
   const [geo, setGeo] = useState([]);
+  const [marker, setMarker] = useState([]);
   const [depotId, setDepotId] = useState(1);
   const [depots, setDepots] = useState([]);
   const [driverId, setDriverId] = useState(0);
@@ -28,7 +38,6 @@ const AdminDepotMap = () => {
 
   useEffect(async () => {
     // This is be executed when `loading` state changes
-    // console.log('depotId=', depotId);
     // get drivers for selected depot
     const respDrivers = await getDataByField('drivers', 'depotId', depotId);
     setDrivers(respDrivers);
@@ -36,7 +45,9 @@ const AdminDepotMap = () => {
     // get coords
     const fetchGeo = await getGeo(depotId, dayNo, driverId);
     setGeo(fetchGeo, []);
-    // fetchGeo();
+
+    const fetchMarker = await getMarker(depotId, dayNo, driverId);
+    setMarker(fetchMarker, []);
   }, [loading]);
 
   const handleForm = (e) => {
@@ -88,14 +99,12 @@ const AdminDepotMap = () => {
               onChange={date => setStartDate(date)} // eslint-disable-line
               dateFormat="dd-MM-yyyy"
             />
+            <button type="submit">Confirm</button>
           </div>
-        </div>
-        <div className="form-row">
-          <button type="submit">Confirm</button>
         </div>
       </form>
       <Map
-        defaultZoom={14}
+        defaultZoom={23}
         autoAdjust={true}
         defaultCenter={['Manchester']}
         apiKey={BING_KEY}
@@ -103,7 +112,7 @@ const AdminDepotMap = () => {
         width="100%"
         provider="bing"
         routes={geo}
-        // markers={markersData}
+        markers={marker}
         type="roadmap" >
       </Map>
     </div>

@@ -4,11 +4,11 @@ import { getAllData } from '../AdminUtils/makeApiCalls.js';
 
 function AdminDrivers() {
   const [drivers, setDrivers] = useState([]);
+
   useEffect(async () => {
     // This is be executed when `loading` state changes
     const response = await getAllData('drivers');
     setDrivers(response);
-    // console.log('my resp=', response);
   }, []);
 
   return (
@@ -17,7 +17,7 @@ function AdminDrivers() {
       {(() => {
         if (drivers.length === 0) {
           return (
-            <p>No recors found.</p>
+            <p>No records found.</p>
           );
           // eslint-disable-next-line
         } else {

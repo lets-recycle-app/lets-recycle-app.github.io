@@ -10,22 +10,19 @@ function AdminMenu(props) {
         hidden={props.user !== undefined && props.user === 'adm' ? '' : 'hidden'}
       >
         <li className="admin-menu-item">
-          <NavLink exact to="/admin">Dashboard</NavLink>
+          <NavLink exact to="/admin">Admin Home</NavLink>
         </li>
         <li className="admin-menu-item">
-          <NavLink to="/admin/map">Depot Map</NavLink>
+          <NavLink to="/admin/map">Depot Maps</NavLink>
         </li>
         <li className="admin-menu-item">
-          <NavLink to="/admin/depots">Depots</NavLink>
+          <NavLink to="/admin/depots">Depot List</NavLink>
         </li>
         <li className="admin-menu-item">
-          <NavLink to="/admin/drivers">Drivers</NavLink>
+          <NavLink to="/admin/drivers">Driver List</NavLink>
         </li>
         <li className="admin-menu-item">
-          <NavLink to="/admin/postcode">PostCodes</NavLink>
-        </li>
-        <li className="admin-menu-item">
-          <NavLink to="/admin/users">Users</NavLink>
+          <NavLink to="/admin/users">Admin Users</NavLink>
         </li>
         {/*         <li className="admin-menu-item">
 <NavLink to="/admin/counter">Test Counter</NavLink>

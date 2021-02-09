@@ -5,7 +5,16 @@ import '../AdminDepotMap/AdminDepotMap.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import Map from 'devextreme-react/map';
 import { formatFullDate, formatNumberDate } from '../AdminUtils/formatDate.js';
-import { getGeo } from '../AdminUtils/makeApiCalls.js';
+
+import {
+  driverSelectId, getDriver, getGeo, getMarker,
+} from '../AdminUtils/makeApiCalls.js';
+// eslint-disable-next-line no-unused-vars
+import recMarker from '../../images/recMarker.png';
+// eslint-disable-next-line no-unused-vars
+import delMarker from '../../images/delMarker.png';
+// eslint-disable-next-line no-unused-vars
+import depMarker from '../../images/depMarker.png';
 
 function AdminDriversMap() {
   const BING_KEY = `${process.env.REACT_APP_BING_API}`;
@@ -15,12 +24,21 @@ function AdminDriversMap() {
   const [dayNo, setDayNo] = useState(formatNumberDate(startDate));
   const [dbDate, setDbDate] = useState(formatFullDate(now, 'db'));
   const [geo, setGeo] = useState([]);
+  const [marker, setMarker] = useState([]);
+  const [driver, setDriver] = useState([]);
 
   useEffect(async () => {
     // This is be executed when `dbDate` state changes
-    // get coords
-    const fetchGeo = await getGeo(1, dayNo, 1);
+    // get latitude/longitude coordinates
+    const fetchGeo = await getGeo(driver.depotId, dayNo, driverSelectId);
     setGeo(fetchGeo, []);
+
+    const fetchMarker = await getMarker(driver.depotId, dayNo, driverSelectId);
+    setMarker(fetchMarker, []);
+
+    const driverResponse = await getDriver(driverSelectId);
+    setDriver(driverResponse[0], []);
+
     // fetchGeo();
   }, [dbDate]);
 
@@ -33,7 +51,8 @@ function AdminDriversMap() {
 
   return (
     <div>
-      <h2>Your {formatFullDate(now) === formatedDate ? `todays (${formatedDate})` : `${formatedDate}`} route is shown below.</h2>
+      <h2>Daily Route Map {formatFullDate(now) === formatedDate ? `${formatedDate}` : `${formatedDate}`}</h2>
+      <h3>Driver: {driver.driverName}, {driver.driverId} Depot</h3>
       <form onSubmit={handleForm} className="driversMapForm">
         <div className="form-row">
           <label htmlFor="id">Select another date:</label>
@@ -53,25 +72,25 @@ function AdminDriversMap() {
         if (geo.length > 0) {
           return (
             <Map
-              defaultCenter={['Prenton', 'Prenton', 'CH43 8TJ']}
               defaultZoom={14}
+              autoAdjust={true}
+              defaultCenter={['Manchester']}
               apiKey={BING_KEY}
-              height={500}
+              height={600}
               width="100%"
               provider="bing"
               routes={geo}
-              // type = "roadmap" || "satellite" || "hybrid"
+              markers={marker}
               type="roadmap" >
             </Map>
           );
           // eslint-disable-next-line
         } else {
           return (
-            <div>No route foud for this date.</div>
+            <div>No route found for this date.</div>
           );
         }
       })()}
-
     </div>
   );
 }

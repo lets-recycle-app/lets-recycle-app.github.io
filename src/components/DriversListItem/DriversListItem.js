@@ -5,10 +5,12 @@ function DriversListItem(props) {
   return (
         <div className="drivers-list-item">
           <div className= {props.routeAction === 'collection' ? 'box-head green' : 'box-head dark'} >
-            {props.houseNo} {props.street}, {props.town}, {props.postcode}
+            {props.routeAction !== 'depot' ? `${props.routeAction}:  ${props.appliance}` : props.routeAction}
           </div>
           <div className="box-body">
+
             Reference no: {props.refNo}
+            <br/>Address : {props.houseNo} {props.street}, {props.town}, {props.postcode}
             <br/>Distance : {props.distance} km
             { props.name !== '' && props.name !== undefined ? <br/> : '' }
             { props.name !== '' && props.name !== undefined ? `Name: ${props.name}` : '' }

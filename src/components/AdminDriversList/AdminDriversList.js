@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import DriversListItem from '../DriversListItem/DriversListItem.js';
 import 'react-datepicker/dist/react-datepicker.css';
-import { getDriversItems, getAddressById, getDepotById } from '../AdminUtils/makeApiCalls.js';
+import {
+  getDriversItems, getAddressById, getDepotById, getDriver, driverSelectId,
+} from '../AdminUtils/makeApiCalls.js';
 import { formatFullDate } from '../AdminUtils/formatDate.js';
 
 function AdminDriversList() {
@@ -11,9 +13,14 @@ function AdminDriversList() {
   const [formatedDate, setFormatedDate] = useState(formatFullDate(now));
   const [dbDate, setDbDate] = useState(formatFullDate(now, 'db'));
   const [driversItems, setDriversItems] = useState([]);
+  const [driver, setDriver] = useState([]);
+
   useEffect(async () => {
+    const driverResponse = await getDriver(driverSelectId);
+    setDriver(driverResponse[0], []);
+
     // This is be executed when `loading` state changes
-    const drItems = await getDriversItems(1, dbDate);
+    const drItems = await getDriversItems(driverSelectId, dbDate);
     // console.log('drItems= ', drItems, 'dbDate=', dbDate);
     const arrItemsAddress = [];
     // eslint-disable-next-line
@@ -58,10 +65,11 @@ function AdminDriversList() {
 
   return (
     <div>
-      <h2>Your {formatFullDate(now) === formatedDate ? `todays (${formatedDate})` : `${formatedDate}`} route is listed below.</h2>
+      <h2> Daily Route Schedule {formatFullDate(now) === formatedDate ? `${formatedDate}` : `${formatedDate}`}</h2>
+      <h3>Driver: {driver.driverName}, {driver.driverId} Depot</h3>
+
       <form onSubmit={handleForm} >
         <div className="form-row">
-          <label htmlFor="id">Select another date:</label>
           <div className="datePickerWrap">
             <DatePicker
               id="dateSelected"
