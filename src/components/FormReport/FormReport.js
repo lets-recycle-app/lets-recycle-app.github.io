@@ -305,8 +305,7 @@ function FormReport() {
           </div>
         </div>
         <div className="form-row">
-          <label htmlFor="inputNotes">Notes
-          <br /><small>Please describe location in detail. What is parking situation and access to the appliance?</small>
+          <label htmlFor="inputNotes">Please describe the exact appliance pickup location and any parking issues.
           </label>
           <div className="textarea-wrapper">
             <textarea

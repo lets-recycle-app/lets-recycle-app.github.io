@@ -1,5 +1,8 @@
 /* eslint-disable */
 import { makePostCall, makeGetCall } from './makeAxiosCalls.js';
+import delMarker from "../../images/delMarker.png";
+import depMarker from "../../images/depMarker.png";
+import recMarker from "../../images/recMarker.png";
 
 /**
  * this returns an object array of all data rows as objects
@@ -78,15 +81,39 @@ export const getGeo = async (depotId = 1, dayNo = 0, driverId = 0) => {
   const routeApi = `${apiUrl}?depotId = ${depotId} & dayNo = ${dayNo} & driverId = ${driverId}`;
   const data = await makeGetCall(routeApi);
 
-  let myArray = [];
+  let geoArray = [];
   if (data.result !== undefined && data.result.length > 0) {
-    myArray = data.result;
+    geoArray = data.result;
   }
-  console.log(`routApi call ${routeApi}`)
-  return myArray;
+  return geoArray;
 };
 
-export const driverSelectId =47;
+export const getMarker = async (depotId = 1, dayNo = 0, driverId = 0) => {
+  const apiUrl = 'https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/route-marker';
+
+  const routeApi = `${apiUrl}?depotId = ${depotId} & dayNo = ${dayNo} & driverId = ${driverId}`;
+  const data = await makeGetCall(routeApi);
+
+  let markerArray = [];
+  if (data.result !== undefined && data.result.length > 0) {
+    data.result.forEach((m) => {
+      if (m.routeAction === 'delivery') {
+        // eslint-disable-next-line no-param-reassign
+        m.iconSrc = delMarker;
+      } else if (m.routeAction === 'depot') {
+        // eslint-disable-next-line no-param-reassign
+        m.iconSrc = depMarker;
+      } else {
+        // eslint-disable-next-line no-param-reassign
+        m.iconSrc = recMarker;
+      }
+    });
+    markerArray = data.result;
+  }
+  return markerArray;
+};
+
+export const driverSelectId =107;
 
 export const getDriver = async (driverId = 1) => {
   const apiUrl = 'https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/drivers';

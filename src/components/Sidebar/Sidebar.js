@@ -1,7 +1,7 @@
 import React from 'react';
-import ad1 from '../../images/ad1.jpg';
-import ad2 from '../../images/ad2.jpg';
-import ad3 from '../../images/ad3.jpg';
+import ad1 from '../../images/aoLapTopAd.png';
+import ad2 from '../../images/aoBusAd.png';
+import ad3 from '../../images/aoWashAd.png';
 import './Sidebar.css';
 
 function Sidebar() {

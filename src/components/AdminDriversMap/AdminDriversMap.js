@@ -5,9 +5,16 @@ import '../AdminDepotMap/AdminDepotMap.css';
 import 'react-datepicker/dist/react-datepicker.css';
 import Map from 'devextreme-react/map';
 import { formatFullDate, formatNumberDate } from '../AdminUtils/formatDate.js';
+
 import {
-  driverSelectId, getDriver, getGeo,
+  driverSelectId, getDriver, getGeo, getMarker,
 } from '../AdminUtils/makeApiCalls.js';
+// eslint-disable-next-line no-unused-vars
+import recMarker from '../../images/recMarker.png';
+// eslint-disable-next-line no-unused-vars
+import delMarker from '../../images/delMarker.png';
+// eslint-disable-next-line no-unused-vars
+import depMarker from '../../images/depMarker.png';
 
 function AdminDriversMap() {
   const BING_KEY = `${process.env.REACT_APP_BING_API}`;
@@ -17,15 +24,18 @@ function AdminDriversMap() {
   const [dayNo, setDayNo] = useState(formatNumberDate(startDate));
   const [dbDate, setDbDate] = useState(formatFullDate(now, 'db'));
   const [geo, setGeo] = useState([]);
+  const [marker, setMarker] = useState([]);
   const [driver, setDriver] = useState([]);
 
   useEffect(async () => {
     // This is be executed when `dbDate` state changes
-    // get coords
+    // get latitude/longitude coordinates
     const fetchGeo = await getGeo(driver.depotId, dayNo, driverSelectId);
     setGeo(fetchGeo, []);
-    console.log(`DepotId ${driver.depotId}`);
-    console.log(geo);
+
+    const fetchMarker = await getMarker(driver.depotId, dayNo, driverSelectId);
+    setMarker(fetchMarker, []);
+
     const driverResponse = await getDriver(driverSelectId);
     setDriver(driverResponse[0], []);
 
@@ -70,6 +80,7 @@ function AdminDriversMap() {
               width="100%"
               provider="bing"
               routes={geo}
+              markers={marker}
               type="roadmap" >
             </Map>
           );
@@ -80,7 +91,6 @@ function AdminDriversMap() {
           );
         }
       })()}
-
     </div>
   );
 }
