@@ -121,7 +121,6 @@ function FormReport() {
 
       // get the dates
       collectionDatesAndRefs = await getDatesForPostcode(inputPostcode.value);
-      // console.log('dates and refs = ', collectionDatesAndRefs);
 
       if (collectionDatesAndRefs.arrDates !== undefined && collectionDatesAndRefs.arrDates.length > 0) {
         if (locationType.value === 'private property') {
@@ -131,10 +130,10 @@ function FormReport() {
         } else {
           // public area request
           // get params for api call
-          const refNo = collectionDatesAndRefs.arrRefNos[0];
+          const refNo = collectionDatesAndRefs.arrRefNos[1];
           const url = `https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/collect-confirm?refNo=${refNo}`;
           const objBody = objColReq;
-          // console.log(objBody);
+          console.log(`Public collect-confirm ${url}`);
 
           // save request in the db
           const saveReq = await makePostCall(url, objBody);
@@ -157,19 +156,19 @@ function FormReport() {
   // this must be passed to FormDates component!!!
   const confirmDate = async (e, approvedDate, approvedKey) => {
     e.preventDefault();
+
     if (approvedDate.length > 0) {
       // get params for api call
       const refNo = collectionDatesAndRefs.arrRefNos[approvedKey];
-      const saveUrl = `https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/collect-confirm?refNo=${refNo}`;
+      const saveUrl = 'https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/collect-confirm';
       const objBody = collectionRequest;
-      // console.log(objBody);
+      objBody.refNo = refNo;
 
       // save request in the db
       const saveReq = await makePostCall(saveUrl, objBody);
-      // console.log(saveReq);
+      const newRefNo = saveReq.result[0].refNo;
       if (saveReq.status !== undefined && saveReq.status === 200) {
-        // console.log('success');
-        setSubmissionOutcome({ msg: [`Your collection is going to be on ${approvedDate}`], css: 'successMsg' });
+        setSubmissionOutcome({ msg: [`Your collection is going to be on ${approvedDate}, RefNo: ${newRefNo}`], css: 'successMsg' });
       } else {
         setSubmissionOutcome({ msg: ['An error occured and your request was not saved. Try again some other time.'], css: 'errorMsg' });
       }
