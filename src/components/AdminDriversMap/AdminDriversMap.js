@@ -16,13 +16,14 @@ function AdminDriversMap() {
   const [startDate, setStartDate] = useState(now);
   const [formatedDate, setFormatedDate] = useState(formatFullDate(now));
   const [dayNo, setDayNo] = useState(formatNumberDate(startDate));
-  const [dbDate, setDbDate] = useState(formatFullDate(now, 'db'));
   const [geo, setGeo] = useState([]);
   const [marker, setMarker] = useState([]);
   const [driver, setDriver] = useState([]);
+  const [loading, setLoading] = useState(1);
 
   useEffect(async () => {
-    // This is be executed when `dbDate` state changes
+    // console.log('I run');
+    // This is be executed when `loading` state changes
     // get latitude/longitude coordinates
     const fetchGeo = await getGeo(driver.depotId, dayNo, driverSelectId);
     setGeo(fetchGeo, []);
@@ -34,13 +35,13 @@ function AdminDriversMap() {
     setDriver(driverResponse[0], []);
 
     // fetchGeo();
-  }, [dbDate]);
+  }, [loading]);
 
   const handleForm = (e) => {
     e.preventDefault();
     setFormatedDate(formatFullDate(startDate));
-    setDbDate(formatFullDate(startDate, 'db'));
     setDayNo(formatNumberDate(startDate));
+    setLoading(loading + 1); // this triggers async useEffect
   };
 
   return (
