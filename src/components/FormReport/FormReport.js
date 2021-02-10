@@ -121,7 +121,7 @@ function FormReport() {
 
       // get the dates
       collectionDatesAndRefs = await getDatesForPostcode(inputPostcode.value);
-
+      // console.log('dates and refs', collectionDatesAndRefs);
       if (collectionDatesAndRefs.arrDates !== undefined && collectionDatesAndRefs.arrDates.length > 0) {
         if (locationType.value === 'private property') {
           // show form if dates not empty
@@ -130,19 +130,20 @@ function FormReport() {
         } else {
           // public area request
           // get params for api call
-          const refNo = collectionDatesAndRefs.arrRefNos[1];
-          const url = `https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/collect-confirm?refNo=${refNo}`;
+          const refNo = collectionDatesAndRefs.arrRefNos[0];
+          const url = 'https://1t4ggjq9kl.execute-api.eu-west-2.amazonaws.com/prod/api/collect-confirm';
           const objBody = objColReq;
-          console.log(`Public collect-confirm ${url}`);
-
+          objBody.refNo = refNo;
+          // console.log(`Public collect-confirm ${url}`);
           // save request in the db
           const saveReq = await makePostCall(url, objBody);
-          // console.log(saveReq);
+          // console.log('saveReq=', saveReq);
           if (saveReq.status !== undefined && saveReq.status === 200) {
-            // console.log('success');
-            setSubmissionOutcome({ msg: ['Your request was sent.'], css: 'successMsg' });
+            const reference = saveReq.result[0].refNo;
+            // console.log(reference);
+            setSubmissionOutcome({ msg: [`Your request was sent. Reference No ${reference} Date: ${collectionDatesAndRefs.arrDates[0]}`], css: 'successMsg' });
           } else {
-            setSubmissionOutcome({ msg: ['An error occured and your request was not saved. Try again some other time.'], css: 'errorMsg' });
+            setSubmissionOutcome({ msg: ['An error occured and your request was not saved. Try again some other time!'], css: 'errorMsg' });
           }
           clearFormInputs();
         }
