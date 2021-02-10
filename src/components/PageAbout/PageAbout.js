@@ -12,7 +12,7 @@ const appliances = [
 function PageAbout() {
   return (
     <div className="main-column">
-      <h1>About us</h1>
+      <h1>About Us</h1>
       <h2>Who we are and what we do</h2>
       <p>We are AO.com recycle service. Anyone who wants to get rid of their old house appliance can request that we collect it. We will check if it is possible within next 7 days, and give you possible dates to choose from. If there is no collection available, you can opt in to the waiting list.</p>
       <h2>Frequently asked questions</h2>

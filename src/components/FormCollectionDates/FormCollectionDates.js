@@ -1,11 +1,12 @@
 /* ?eslint-disable */
 import React, { useState } from 'react';
+import './FormCollectionDates.css';
 
 function FormCollectionDates(props) {
   const dates1 = props.dates;
   let dates2 = props.dates;
   if (dates1.length > 0) {
-    const clear = ['unselect date'];
+    const clear = ['non suitable'];
     dates2 = dates1.concat(clear);
   }
   const [approvedDate, setApprovedDate] = useState('');
@@ -25,17 +26,12 @@ function FormCollectionDates(props) {
     setApprovedDate('');
     setApprovedKey('');
   };
-  const formMessage = (props.operation === 'create' ? 'If none of the dates is selected, this request will be cancelled. You can try some other time.' : 'If none of the dates is selected, your current collection date will not be changed.');
 
   return (
     <form onSubmit={handleForm}>
-      <p><strong>Available collection date(s) listed below. Select one that suits you and confirm.</strong></p>
+      <h2>Please select one from the available collection date(s) listed below:</h2>
       <div className="form-row">
-        <label>Available Date(s)<br />
-          <small>{formMessage}</small>
-        </label>
-        <div className="v-align-top">
-          <br />
+        <div className="v-align-top, collection-radio">
           {dates2.map((date, n) => <div key={n}>
             <input
               type="radio"
@@ -48,12 +44,12 @@ function FormCollectionDates(props) {
             />
             <label htmlFor={`dateRadio${n}`}>{date}</label>
           </div>)}
+          <div className="form-row">
+            <button type="submit">Confirm</button>
+          </div>
         </div>
       </div>
 
-      <div className="form-row text-right">
-        <button type="submit">Confirm</button>
-      </div>
     </form>
   );
 }
