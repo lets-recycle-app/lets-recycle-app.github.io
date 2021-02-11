@@ -128,6 +128,7 @@ function FormManageCollection() {
     <div>
       <form onSubmit={submitForm} hidden={!submissionOutcome.showDateForm ? '' : 'hidden'}>
         <div className={submissionOutcome.css}>
+          <style>fontsize =20</style>
           {submissionOutcome.msg.map((line, i) => <span key={i}>{line}</span>)}
         </div>
         <div className="form-row">
